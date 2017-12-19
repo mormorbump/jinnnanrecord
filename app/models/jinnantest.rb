@@ -1,0 +1,2 @@
+class Jinnantest < ApplicationRecord
+end
