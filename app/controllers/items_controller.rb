@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
 def new
+	#ogatest
 end
 def show
   @sano = Sano.all
