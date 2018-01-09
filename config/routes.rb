@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  get 'carts/show'
+
+  get 'carts/complete'
+
+  get 'users/show'
+
+  get 'users/new'
+
+  get 'users/edit'
+
   get 'tests/index'
 
   get 'tests/show'
