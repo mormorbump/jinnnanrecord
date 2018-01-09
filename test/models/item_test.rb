@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: items
+#
+#  id           :integer          not null, primary key
+#  artist_id    :integer
+#  item_name    :string
+#  label        :string
+#  image        :string
+#  release_date :date
+#  price        :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
 require 'test_helper'
 
 class ItemTest < ActiveSupport::TestCase
