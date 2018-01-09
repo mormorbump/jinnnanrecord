@@ -17,5 +17,14 @@ class Item < ApplicationRecord
   has_many :cart_items
   has_many :item_genres
   has_many :order_items
+  has_many :reviews
+  has_many :tracks
+
+  has_one :stock
+
+  belongs_to :artist
+  belongs_to :category
+  belongs_to :admin_user
+
 
 end
