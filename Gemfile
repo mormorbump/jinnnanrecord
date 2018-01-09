@@ -29,6 +29,30 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem 'refile', require: "refile/rails", github: 'manfe/refile'
+gem "refile-mini_magick"
+gem "refile-s3"
+gem "kaminari"
+gem "devise"
+gem 'pry-rails'
+# デバッグ用
+gem 'hirb'
+# rails cが見やすくなります
+gem 'jquery-rails'
+gem 'seed-fu'
+# データ入れるやつ
+gem 'nested_form_fields'
+# form_forをネストします
+gem 'activeadmin', github: 'gregbell/active_admin'
+# 管理画面のgem
+gem 'pundit'
+# 管理者の振り分け
+gem 'better_errors'
+# エラー画面でデバッグ
+gem 'binding_of_caller'
+# エラー画面見やすく
+gem 'annotate'
+# モデルの上に絡む表示
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -51,4 +75,4 @@ group :development do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
