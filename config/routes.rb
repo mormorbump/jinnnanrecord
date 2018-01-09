@@ -1,14 +1,7 @@
 Rails.application.routes.draw do
-  get 'carts/show'
-
-  get 'carts/complete'
-
-  get 'users/show'
-
-  get 'users/new'
-
-  get 'users/edit'
-
+  devise_for :users
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   get 'tests/index'
 
   get 'tests/show'
