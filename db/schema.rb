@@ -65,7 +65,6 @@ ActiveRecord::Schema.define(version: 20180109081327) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.integer "item_id"
     t.string "category_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -86,6 +85,7 @@ ActiveRecord::Schema.define(version: 20180109081327) do
 
   create_table "items", force: :cascade do |t|
     t.integer "artist_id"
+    t.integer "category_id"
     t.string "item_name"
     t.string "label"
     t.string "image_id"
