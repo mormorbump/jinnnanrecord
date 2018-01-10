@@ -17,7 +17,12 @@
         <ul>
           <li>MyPage</li>
           <li>Cart</li>
-          <li>LogOut</li>
+          <li>
+            <% if user_signed_in? %>
+              <%= link_to 'LogOut', destroy_user_session_path, method: :delete %></li>
+            <% else %>
+              <%= link_to 'LogIn', new_user_session_path %></li>
+            <% end %>
         </ul>
       </nav>
     </header>
