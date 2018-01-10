@@ -25,6 +25,4 @@ class Item < ApplicationRecord
   belongs_to :artist
   belongs_to :category
   belongs_to :admin_user
-
-
 end
