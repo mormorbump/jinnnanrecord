@@ -45,11 +45,11 @@ ActiveRecord::Schema.define(version: 20180109081327) do
 
   create_table "artists", force: :cascade do |t|
     t.string "artist_name", null: false
-    t.string "aritst_name_kana", null: false
+    t.string "artist_name_kana", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["aritst_name_kana"], name: "index_artists_on_aritst_name_kana"
     t.index ["artist_name"], name: "index_artists_on_artist_name"
+    t.index ["artist_name_kana"], name: "index_artists_on_artist_name_kana"
   end
 
   create_table "cart_items", force: :cascade do |t|
