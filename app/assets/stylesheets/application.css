@@ -15,14 +15,12 @@
  */
 
 
-
-
-
 .clearfix:after{
   content: ""; 
   display: block; 
   clear: both; 
 }
+
 
 header{
 	width: 100%;
@@ -44,9 +42,9 @@ nav{
 }
 
 nav ul{
-	width: 360px;
+	width: 450px;
 	float:right;
-	margin-right: 70px
+	margin-right: 70px;き
 }
 
 nav ul li{
@@ -61,7 +59,32 @@ nav ul li{
 	float:left;
 }
 
+nav ul li a{
+	color: white;
+}
 
+
+main{
+	width: 1000px;
+	margin:0 auto;
+}
+
+.login_form_box{
+	width: 500px;
+	height: 800px;
+	margin: 50px auto 0;
+	text-align: center;
+
+}
+
+.login_form_box h2{
+	text-align: left;
+	margin-bottom: 20px;
+}
+
+.field{
+	height: 50px;
+}
 
 footer{
 	width: 100%;
