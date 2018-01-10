@@ -1,6 +1,13 @@
 class ItemsController < ApplicationController
   def index
-    @items = Item.all
+    if current_user.presence
+      unless current_user.cart.presence
+        cart = Cart.new
+        cart.user_id = current_user.id
+        cart.save
+      end
+    end
+      @items = Item.all
   end
 
   def show

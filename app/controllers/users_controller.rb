@@ -5,12 +5,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    unless current_user.cart.presence
-      cart = Cart.new
-      cart.user_id = current_user.id
-      cart.save
-    end
-    redirect_to items_path
   end
 
   def edit
