@@ -20,4 +20,15 @@ class Track < ApplicationRecord
 	def display_name
 	  self.song_title
 	end
+
+  class << self
+    # 何枚組のCDか求める
+    def disc_num_of_sheets
+      group(:disc_num).max.disc_num
+    end
+    # 収録曲の合計
+    def sum_of_songs
+      song_time = group(:song_time).sum(:song_time)
+    end
+  end
 end

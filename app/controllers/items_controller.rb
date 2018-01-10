@@ -12,6 +12,6 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @cart_item = CartItem.new
+    @cart_item = current_user.cart.cart_items.build
   end
 end

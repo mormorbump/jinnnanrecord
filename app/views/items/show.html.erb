@@ -1,21 +1,32 @@
 <main>
 	<div class="album_case">
-		<img src="/assets/images/catkick.jpg">
+		<% if @item.image.present? %>
+      <%= attachment_image_tag @item, :image, :fill, 200, 200 %>
+      <% else %>
+      <%= image_tag 'no_image.jpg', size: '200x200',alt: "no image" %>
+      <% end %>
 		<div class="album_small_info">
 			<ul>
 				<li>CD名:<%= @item.item_name %></li>
 				<li>アーティスト名：<%= @item.artist.artist_name %></li>
 				<li>価格：<%= @item.price %></li>
 				<li>評価：★★★☆☆</li>
-        <%= form_for(@cart_item,url: add_item_carts_path) do |f| %>
+        <% unless current_user.presence %>
+        <li><%= link_to "ログインしてください。",new_user_session_path %></li>
+          <% else %>
+          <% if current_user.cart_item_exists?(@item) %>
+          <%= link_to 'カートから外す',delete_item_path(@item),method: :delete %>
+          <% else %>
+           <%= form_for(@cart_item,url: add_item_path) do |f| %>
         <li><%= f.number_field :quantity,value: 1 %></li>
-        <% f.hidden_field :item_id, value: @item.id %>
-        <% f.hidden_field :cart_id, value: current_user.cart.id %>
+        <%= f.hidden_field :item_id, value: @item.id %>
         <li>
             <%= f.submit "カートに入れる" do %>
             <button type="button" name="aaa" value="aaa"></button></li>
             <% end %>
+            <% end %>
           <% end %>
+        <% end %>
           <li><button type="button" name="aaa" value="aaa">お気に入り</button></li>
         </ul>
       </div>
@@ -27,13 +38,15 @@
        <li>アルバム名：<%= @item.item_name %></li>
        <li>アーティスト名：<%= @item.artist.artist_name %></li>
        <li>価格：\<%= @item.price %></li>
-       <li>ジャンル：<%#= @item. %></li>
-       <li>カテゴリ：<%#= @item. %></li>
+       <% @item.item_genres.each do |item_genre| %>
+        <li>ジャンル：<%= item_genre.genre.genre_name %></li>
+       <% end %>
+       <li>カテゴリ：<%= @item.category.category_name %></li>
        <li>発売日：<%= @item.release_date %></li>
-       <li>枚数：<%#= @item. %></li>
-       <li>合計時間：<%#= @item. %></li>
+       <li>枚数：<%= @item.tracks.disc_num_of_sheets %></li>
+       <li>合計時間：<%= @item.tracks.sum_of_songs %></li>
+       <%# binding pry %>
        <li>レーベル：<%= @item.label %></li>
-       <li>製造国：<%#= @item. %></li>
      </ul>
    </div>
 
