@@ -7,107 +7,51 @@
 				<li>アーティスト名：<%= @item.artist.artist_name %></li>
 				<li>価格：<%= @item.price %></li>
 				<li>評価：★★★☆☆</li>
-				<li><button type="button" name="aaa" value="aaa">カートに入れる</button></li>
-				<li><button type="button" name="aaa" value="aaa">お気に入り</button></li>
-			</ul>
-		</div>
-	</div>
+        <%= form_for(@cart_item,url: add_item_carts_path) do |f| %>
+        <li><%= f.number_field :quantity,value: 1 %></li>
+        <% f.hidden_field :item_id, value: @item.id %>
+        <% f.hidden_field :cart_id, value: current_user.cart.id %>
+        <li>
+            <%= f.submit "カートに入れる" do %>
+            <button type="button" name="aaa" value="aaa"></button></li>
+            <% end %>
+          <% end %>
+          <li><button type="button" name="aaa" value="aaa">お気に入り</button></li>
+        </ul>
+      </div>
+    </div>
 
-	<div class="album_big_info">
-		<h2>商品情報</h2>
-		<ul>
-			<li>アルバム名：<%= @item.item_name %></li>
-			<li>アーティスト名：<%= @item.artist.artist_name %></li>
-			<li>価格：\<%= @item.price %></li>
-			<li>ジャンル：<%#= @item. %></li>
-			<liカテゴリ：<%#= @item. %></li>
-			<li>発売日：<%= @item.release_date %></li>
-			<li>枚数：<%#= @item. %></li>
-			<li>合計時間：<%= @item. %></li>
-			<li>レーベル：<%= @item.label %></li>
-			<li>製造国：<%#= @item. %></li>
-		</ul>
-	</div>
+    <div class="album_big_info">
+      <h2>商品情報</h2>
+      <ul>
+       <li>アルバム名：<%= @item.item_name %></li>
+       <li>アーティスト名：<%= @item.artist.artist_name %></li>
+       <li>価格：\<%= @item.price %></li>
+       <li>ジャンル：<%#= @item. %></li>
+       <li>カテゴリ：<%#= @item. %></li>
+       <li>発売日：<%= @item.release_date %></li>
+       <li>枚数：<%#= @item. %></li>
+       <li>合計時間：<%#= @item. %></li>
+       <li>レーベル：<%= @item.label %></li>
+       <li>製造国：<%#= @item. %></li>
+     </ul>
+   </div>
 
-		<div class="album_disc_info">
-			<h3>Disc1</h3>
-			<table class="album_table">
-				<tr class="album_title">
-					<th>No.</th>
-					<th>曲名</th>
-					<th>収録時間</th>
-				</tr>
-				<%# @item..each do |song| %>
+   <div class="album_disc_info">
+     <h3>Disc1</h3>
+     <table class="album_table">
+      <tr class="album_title">
+       <th>No.</th>
+       <th>曲名</th>
+       <th>収録時間</th>
+     </tr>
+     <%# @item..each do |song| %>
 <!-- 				<tr>
 					<td>1</td>
 					<td>女々しくて</td>
 					<td>120:39</td>
 				</tr>	 -->
-			</table>	
+			</table>
 			<p>合計時間：999分</p>
-	 </div>
-
-
-
-
-
-<!-- 	<div class="otheralubum">
-		<h3>このアーティストの別のアルバム</h3>
-		<ul class="clearfix">
-			<li>
-				<a href="#">
-					<div class="otherimage">
-						<img src="img/catkick.jpg">					
-					</div>
-					<p class="ohertitle">
-						nekonekoneko		
-					</p>
-				</a>
-			</li>
-			
-			<li>
-				<a href="#">
-					<div class="otherimage">
-						<img src="img/catkick.jpg">					
-					</div>
-					<p class="ohertitle">
-						nekonekoneko		
-					</p>
-				</a>
-			</li>			
-
-			<li>
-				<a href="#">
-					<div class="otherimage">
-						<img src="img/catkick.jpg">					
-					</div>
-					<p class="ohertitle">
-						nekonekoneko		
-					</p>
-				</a>
-			</li>			
-
-			<li>
-				<a href="#">
-					<div class="otherimage">
-						<img src="img/catkick.jpg">					
-					</div>
-					<p class="ohertitle">
-						nekonekoneko		
-					</p>
-				</a>
-			</li>			
-
-			<li>
-				<a href="#">
-					<div class="otherimage">
-						<img src="img/catkick.jpg">					
-					</div>
-					<p class="ohertitle">
-						nekonekoneko		
-					</p>
-				</a>
-			</li>
-		</ul>
-	</div>
-</main> -->
+    </div>
+  </main>
