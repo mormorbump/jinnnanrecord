@@ -13,9 +13,6 @@ class UsersController < ApplicationController
     redirect_to items_path
   end
 
-  def new
-  end
-
   def edit
   end
 
