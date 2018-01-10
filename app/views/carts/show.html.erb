@@ -25,13 +25,13 @@
     <% end %>
   </table>
   <div class="shokei">
-    <p>小計：\30000</p>
+    <p>小計：<%= @total_price %></p>
   </div>
 
   <div class="buttonwrap">
-    <button type="button" name="aaa" value="aaa">
-      カートを空にする
-    </button>
+      <%= link_to delete_all_path(current_user.cart),method: :delete do%>
+    <button type="button">カートを空にする
+    </button><% end %>
 
     <button type="button" name="aaa" value="aaa">
       会計する

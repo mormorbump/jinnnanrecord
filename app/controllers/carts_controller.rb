@@ -1,8 +1,13 @@
 class CartsController < ApplicationController
-  before_action :set_cart_item, except: [:show,:delete_item]
+  before_action :set_cart_item, only: [:add_item,:update_item]
 
   def show
     @cart_items = current_user.cart.cart_items
+    @total_price = 0
+
+    @cart_items.each do |cart_item|
+      @total_price += cart_item.item.price * cart_item.quantity
+    end
   end
 
   def add_item
@@ -23,6 +28,11 @@ class CartsController < ApplicationController
     @cart_item = current_user.cart.cart_items.find_by(item_id: params[:item_id])
     @cart_item.destroy
     redirect_to cart_path(current_user.cart)
+  end
+
+  def delete_all
+    CartItem.where(cart_id: params[:cart_id]).delete_all
+    redirect_to items_path
   end
 
   private
