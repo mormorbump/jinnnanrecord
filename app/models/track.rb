@@ -14,4 +14,10 @@
 #
 
 class Track < ApplicationRecord
+	belongs_to :item
+	belongs_to :artist
+
+	def display_name
+	  self.song_title
+	end
 end
