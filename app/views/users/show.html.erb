@@ -1,2 +1,22 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="article-list">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">ユーザー情報</h2>
+            </div>
+            <div class="row articles">
+                <div class="col-md-4 col-sm-6 item">
+                    <h3 class="name"><%= link_to "ユーザー情報編集", edit_user_path(@user) %></h3>
+                    <%= link_to edit_user_path(@user), class:"action" do %><i class="glyphicon glyphicon-circle-arrow-right"></i></a>
+                    <% end %>
+                  </div>
+                <div
+                    class="col-md-4 col-sm-6 item"><a href="#">
+                    <h3 class="name">カード情報</h3>
+                    <a href="#" class="action"><i class="glyphicon glyphicon-circle-arrow-right"></i></a></div>
+            <div
+                class="col-md-4 col-sm-6 item"><a href="#">
+                <h3 class="name">購入履歴</h3>
+                <a href="#" class="action"><i class="glyphicon glyphicon-circle-arrow-right"></i></a></div>
+            </div>
+        </div>
+    </div>

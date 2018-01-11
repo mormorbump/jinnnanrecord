@@ -15,13 +15,14 @@
           <img src="/assets/jinnanlogo.png">
         </div>
         <ul>
-          <li>MyPage</li>
-          <li>Cart</li>
-          <li>
             <% if user_signed_in? %>
-              <%= link_to 'LogOut', destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to 'MyPage', user_path(current_user) %></li>
+            <% if current_user.cart.presence %>
+            <li><%= link_to 'Cart', cart_path(current_user.cart) %></li>
+            <% end %>
+            <li><%= link_to 'LogOut', destroy_user_session_path, method: :delete %></li>
             <% else %>
-              <%= link_to 'LogIn', new_user_session_path %></li>
+              <li><%= link_to 'LogIn', new_user_session_path %></li>
             <% end %>
         </ul>
       </nav>
@@ -30,7 +31,7 @@
     <main>
       <%= yield %>
     </main>
-    
+
     <footer>
      @神南レコード @Infratop 2017
     </footer>

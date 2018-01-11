@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  resources :users,only: [:show,:edit]
+  resources :users,only: [:show,:edit,:update]
   resources :items,only: [:index,:show]
   resources :carts,only: [:show]
   post 'add_item' => 'carts#add_item'

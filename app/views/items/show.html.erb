@@ -9,7 +9,7 @@
 			<ul>
 				<li>CD名:<%= @item.item_name %></li>
 				<li>アーティスト名：<%= @item.artist.artist_name %></li>
-				<li>価格：<%= @item.price %></li>
+				<li>価格：¥<%= @item.price %></li>
 				<li>評価：★★★☆☆</li>
         <% unless current_user.presence %>
         <li><%= link_to "ログインしてください。",new_user_session_path %></li>
@@ -37,7 +37,7 @@
       <ul>
        <li>アルバム名：<%= @item.item_name %></li>
        <li>アーティスト名：<%= @item.artist.artist_name %></li>
-       <li>価格：\<%= @item.price %></li>
+       <li>価格：¥<%= @item.price %></li>
        <% @item.item_genres.each do |item_genre| %>
         <li>ジャンル：<%= item_genre.genre.genre_name %></li>
        <% end %>

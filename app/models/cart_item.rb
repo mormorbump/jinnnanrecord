@@ -14,4 +14,9 @@ class CartItem < ApplicationRecord
   belongs_to :item
   belongs_to :cart
 
+  validates :quantity,presence: true
+
+  validates :item,presence: true
+  validates :cart,presence: true
+  validates :cart_id,uniqueness: {scope: :item_id}
 end
