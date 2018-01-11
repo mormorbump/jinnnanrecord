@@ -1,7 +1,13 @@
 class UsersController < ApplicationController
 	before_action :set_user, only: [:show, :edit, :update,:correct_user]
   before_action :authenticate_user!
-  before_action :correct_user
+  before_action :correct_user,except: [:new,:orderlists]
+
+  def new
+    cart = current_user.create_cart
+    cart.save
+    redirect_to root_path
+  end
 
   def show
   end
@@ -13,6 +19,9 @@ class UsersController < ApplicationController
   def update
     @user.update(user_params)
     redirect_to user_path(@user)
+  end
+
+  def orderlists
   end
 
   private

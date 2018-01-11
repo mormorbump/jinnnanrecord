@@ -12,7 +12,7 @@
     <header>
       <nav>
         <div class="brandlogo">
-          <img src="/assets/jinnanlogo.png">
+          <%= link_to (image_tag "jinnanlogo.png"),root_path,alt:"jinnan record" %>
         </div>
         <ul>
             <% if user_signed_in? %>
@@ -23,6 +23,7 @@
             <li><%= link_to 'LogOut', destroy_user_session_path, method: :delete %></li>
             <% else %>
               <li><%= link_to 'LogIn', new_user_session_path %></li>
+              <li><%= link_to 'SignUp', new_user_registration_path %></li>
             <% end %>
         </ul>
       </nav>
@@ -33,7 +34,7 @@
     </main>
 
     <footer>
-     @神南レコード @Infratop 2017
+     <%= link_to "@",admin_root_path %>神南レコード @Infratop 2017
     </footer>
   </body>
 </html>
