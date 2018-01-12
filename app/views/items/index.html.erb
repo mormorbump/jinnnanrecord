@@ -1,24 +1,20 @@
 <div class="index-container clearfix">
-  <section class="item">
-      <h2 class="item-headline">新作</h2>
-          <% @items.each do |item| %>
-      <div class="item-box">
-        <div class="item-item clearfix">
-          <% if item.image.present? %>
-      <%= attachment_image_tag item, :image, :fill,200, 200, class: "item-image" %>
-      <% else %>
-      <%= image_tag 'no_image.jpg', size: '20x40',alt: "no image" %>
-      <% end %>
-          <section class="item-text">
-            <h3 class="item-text-headline">
-              <a href="single.html">
-              </a>
-            </h3>
-            <p class="item-date">June 19, 2017</p>
-            <span class="category">Nature</span>
-          </section>
-        </div>
+  <section class="items">
+    <h2 class="item-headline">新作</h2>
+    <% @items.each do |item| %>
+    <div class="item-box">
+      <div class="item-item clearfix">
+        <% if item.image.present? %>
+        <%= attachment_image_tag item, :image, :fill,60, 60 %>
+        <% else %>
+        <%= image_tag 'no_image.jpg', size: '20x40',alt: "no image" %>
         <% end %>
+        <section class="item-text">
+          <p class="item-date">June 19, 2017</p>
+          <span class="category">Nature</span>
+        </section>
+      </div>
+      <% end %>
       <div class="pagination">
         <%= paginate @items %>
       </div>
@@ -38,4 +34,4 @@
         <h2 class="categories-headline">順位</h2>
       </section>
     </div>
-</div>
+  </div>

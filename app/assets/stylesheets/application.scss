@@ -16,6 +16,16 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+* {
+  margin: 0;
+  padding: 0;
+  // box-sizing: border-box;
+  // color: #6c6b6b;
+}
+a {
+  text-decoration: none;
+}
+
 .clearfix:after{
   content: "";
   display: block;
@@ -43,18 +53,18 @@ nav{
 }
 
 nav ul{
-	width: 450px;
+	min-width: 450px;
 	float:right;
 	margin-right: 70px;
 }
 
 nav ul li{
-	width: 120px;
+	min-width: 180px;
 	padding: 0 10px;
 	line-height: 70px;
 	text-align: center;
 	color: white;
-	font-size: 30px;
+	font-size: 24px;
 	font-family: Impact;
 	list-style-type: none;
 	float:left;
@@ -71,7 +81,7 @@ main{
 }
 
 .login_form_box{
-	width: 500px;
+	min-width: 500px;
 	min-height: 800px;
 	margin: 50px auto 0;
 	text-align: center;
