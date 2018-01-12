@@ -11,9 +11,9 @@
   <% @cart_items.each do |cart_item| %>
   <tr>
     <td><% if cart_item.item.image.present? %>
-      <%= attachment_image_tag cart_item.item, :image, :fill, 200, 200 %>
+      <%= attachment_image_tag cart_item.item, :image, :fill, 200, 200,class: "cart_image" %>
       <% else %>
-      <%= image_tag 'no_image.jpg', size: '200x200',alt: "no image" %>
+      <%= image_tag 'no_image.jpg', size: '200x200',alt: "no image" ,class: "cart_image"%>
       <% end %></td>
       <td><%= link_to cart_item.item.item_name, item_path(cart_item.item) %></td>
       <td><%= cart_item.item.item_name %></td>

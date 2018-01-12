@@ -43,9 +43,10 @@
        <% end %>
        <li>カテゴリ：<%= @item.category.category_name %></li>
        <li>発売日：<%= @item.release_date %></li>
+       <% if @item.tracks.presence %>
        <li>枚数：<%= @item.tracks.disc_num_of_sheets %></li>
        <li>合計時間：<%= @item.tracks.sum_of_songs %></li>
-       <%# binding pry %>
+       <% end %>
        <li>レーベル：<%= @item.label %></li>
      </ul>
    </div>

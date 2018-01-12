@@ -17,7 +17,7 @@
 main {
   min-width: 900px;
   margin: 0 auto;
-  padding: 70px 0; /* 上下に70px、左右に0pxの枠の内側の余白 */
+  // padding: 70px 0; /* 上下に70px、左右に0pxの枠の内側の余白 */
 }
 .index-container{
   width: 1000px;
@@ -39,6 +39,7 @@ div .item-box {
   float: left;
   padding: 10px;
   width: 150px;
+  height: 300px;
 }
 .item-item {
   // width: 70px;
@@ -64,20 +65,17 @@ div .item-box {
   color: #fff;
   font-size: 11px;
 }
-.pagination {
-  text-align: center;
-  padding-top: 50px;
-}
-.pagination p {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  margin: 0 5px;
-  color: #fff;
-  background-color: #acabab;
-  border-radius: 3px;
-  line-height: 30px;
-}
+
+// .pagination p {
+//   display: inline-block;
+//   width: 30px;
+//   height: 30px;
+//   margin: 0 5px;
+//   color: #fff;
+//   background-color: #acabab;
+//   border-radius: 3px;
+//   line-height: 30px;
+// }
 .sidebar {
   width: 230px;
   float: left;
@@ -109,4 +107,8 @@ div .item-box {
 }
 .instagram-box:nth-child(odd) {
   margin: 0 10px 10px 0;
+}
+.pagination {
+  margin-top: 0px;
+  width: 100%;
 }
