@@ -33,11 +33,11 @@
     <% end %>
 
   <div class="buttonwrap">
-      <%= link_to delete_all_path(current_user.cart),method: :delete do%>
+      <%= link_to delete_all_path(current_user.cart),method: :delete do %>
     <button type="button">カートを空にする
     </button><% end %>
 
     <button type="button" name="aaa" value="aaa">
-      会計する
+      <%= link_to "会計する",new_order_path %>
     </button>
   </div>

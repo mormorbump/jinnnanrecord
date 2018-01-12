@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   resources :items,only: [:index,:show]
 
+  resources :orders,only: [:new,:create]
+
   resources :carts,only: [:show]
   post 'add_item' => 'carts#add_item'
   patch 'update_item' => 'carts#update_item'
