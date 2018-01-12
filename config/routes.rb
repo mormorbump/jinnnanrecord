@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'users/:user_id/orderlists' => 'users#orderlists',as: 'orderlists_user'
 
   resources :items,only: [:index,:show]
+
   resources :carts,only: [:show]
   post 'add_item' => 'carts#add_item'
   patch 'update_item' => 'carts#update_item'

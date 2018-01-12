@@ -15,40 +15,39 @@
 }
 
 main {
-  width: 800px;
+  min-width: 800px;
   margin: 0 auto;
   padding: 70px 0; /* 上下に70px、左右に0pxの枠の内側の余白 */
 }
-.blog {
-  width: 540px;
-  float: left;
-  margin-right: 30px;
+.index-container{
+  width: 800px;
+  margin: 0 auto;
 }
-.blog-headline {
+.items {
+  // width: 540px;
+  float: left;
+  // margin-right: 30px;
+}
+.item-headline {
   border-bottom: 8px solid #f7f7f7;
   text-align: center;
   line-height: 0.6;
 }
-.blog-box {
+.item-box {
+  float: left;
   padding-top: 50px;
 }
-.blog-item {
-  padding-bottom: 20px;
-  margin-bottom: 20px;
+.item-item {
   border-bottom: 1px solid #f7f7f7;
 }
-.blog-image {
-  float: left;
-  height: 180px;
-}
-.blog-text-headline {
+.line {
   padding-bottom: 15px;
 }
-.blog-text {
-  float: left;
-  padding: 30px 0 0 25px;
+.item-text {
+  // float: left;
+  // padding: 30px 0 0 25px;
 }
-.blog-date {
+.item-date {
   display: inline-block;
   font-size: 12px;
 }

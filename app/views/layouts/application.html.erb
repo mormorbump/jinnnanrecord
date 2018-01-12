@@ -16,14 +16,14 @@
         </div>
         <ul>
             <% if user_signed_in? %>
-            <li><%= link_to 'MyPage', user_path(current_user) %></li>
+            <li><%= link_to 'マイページ', user_path(current_user) %></li>
             <% if current_user.cart.presence %>
-            <li><%= link_to 'Cart', cart_path(current_user.cart) %></li>
+            <li><%= link_to 'カート', cart_path(current_user.cart) %></li>
             <% end %>
-            <li><%= link_to 'LogOut', destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
             <% else %>
-              <li><%= link_to 'LogIn', new_user_session_path %></li>
-              <li><%= link_to 'SignUp', new_user_registration_path %></li>
+              <li><%= link_to 'ログイン', new_user_session_path %></li>
+              <li><%= link_to '新規登録', new_user_registration_path %></li>
             <% end %>
         </ul>
       </nav>
