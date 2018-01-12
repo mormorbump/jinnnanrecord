@@ -18,6 +18,7 @@ class Item < ApplicationRecord
 
   has_many :cart_items
   has_many :item_genres
+  accepts_nested_attributes_for :item_genres
   has_many :order_items
   has_many :reviews, dependent: :destroy
   has_many :tracks, dependent: :destroy
@@ -26,5 +27,9 @@ class Item < ApplicationRecord
 
   belongs_to :artist
   belongs_to :category
+
+  def display_name
+  	self.item_name
+  end
 
 end

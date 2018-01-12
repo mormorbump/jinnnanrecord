@@ -10,4 +10,7 @@
 #
 
 class Category < ApplicationRecord
+	def display_name
+	  self.category_name
+	end
 end
