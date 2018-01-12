@@ -9,4 +9,9 @@
 #
 
 class Genre < ApplicationRecord
+	has_many :item_genres
+
+	def display_name
+		self.genre_name
+	end
 end
