@@ -1,5 +1,5 @@
 index = 1
-10.times do
+50.times do
   Item.seed do |s|
     s.id = index
     s.item_name = "盤#{index}"

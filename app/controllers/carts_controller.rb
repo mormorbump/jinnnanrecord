@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-  before_action :set_cart_item, only: [:add_item,:update_item]
+  before_action :set_cart_item, only: [:update_item]
 
   def show
     @cart_items = current_user.cart.cart_items
