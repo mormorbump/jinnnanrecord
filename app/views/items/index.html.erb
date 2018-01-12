@@ -1,41 +1,41 @@
-<div class="clearfix">
-  <section class="blog">
-      <h2 class="blog-headline">New Release</h2>
-      <div class="blog-box">
-        <div class="blog-item clearfix">
-          <img class="blog-image">
-          <section class="blog-text">
-            <h3 class="blog-text-headline">
+<div class="index-container clearfix">
+  <section class="item">
+      <h2 class="item-headline">新作</h2>
+          <% @items.each do |item| %>
+      <div class="item-box">
+        <div class="item-item clearfix">
+          <% if item.image.present? %>
+      <%= attachment_image_tag item, :image, :fill,200, 200, class: "item-image" %>
+      <% else %>
+      <%= image_tag 'no_image.jpg', size: '20x40',alt: "no image" %>
+      <% end %>
+          <section class="item-text">
+            <h3 class="item-text-headline">
               <a href="single.html">
               </a>
             </h3>
-            <p class="blog-date">June 19, 2017</p>
+            <p class="item-date">June 19, 2017</p>
             <span class="category">Nature</span>
           </section>
         </div>
+        <% end %>
       <div class="pagination">
-        <p><<</p>
-        <p><</p>
-        <p>1</p>
-        <p>2</p>
-        <p>3</p>
-        <p>></p>
-        <p>>></p>
+        <%= paginate @items %>
       </div>
     </section>
     <div class="sidebar">
       <section class="popular">
-        <h2 class="sidebar-headline">Search</h2>
+        <h2 class="sidebar-headline">検索</h2>
         <div class="sidebar-contents">
         </div>
       </section>
       <section class="instagram">
-        <h2 class="instagram-headline">Genre</h2>
+        <h2 class="instagram-headline">ジャンル</h2>
         <div class="sidebar-contents clearfix">
         </div>
       </section>
       <section class="categories">
-        <h2 class="categories-headline">Ranking</h2>
+        <h2 class="categories-headline">順位</h2>
       </section>
     </div>
 </div>

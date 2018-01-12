@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
   def index
-      @items = Item.all
+      @items = Item.order(id: :desc).page(params[:page]).per(5)
   end
 
   def show
