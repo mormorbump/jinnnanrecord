@@ -13,12 +13,13 @@
  *= require_tree .
  *= require_self
  */
-
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
 .clearfix:after{
-  content: ""; 
-  display: block; 
-  clear: both; 
+  content: "";
+  display: block;
+  clear: both;
 }
 
 
@@ -44,7 +45,7 @@ nav{
 nav ul{
 	width: 450px;
 	float:right;
-	margin-right: 70px;き
+	margin-right: 70px;
 }
 
 nav ul li{
@@ -71,7 +72,7 @@ main{
 
 .login_form_box{
 	width: 500px;
-	height: 800px;
+	min-height: 800px;
 	margin: 50px auto 0;
 	text-align: center;
 
