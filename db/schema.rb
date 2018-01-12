@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180109081327) do
+ActiveRecord::Schema.define(version: 20180112083548) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -44,113 +44,107 @@ ActiveRecord::Schema.define(version: 20180109081327) do
   end
 
   create_table "artists", force: :cascade do |t|
-    t.string "artist_name", null: false
-    t.string "artist_name_kana", null: false
+    t.string "artist_name"
+    t.string "aritst_name_kana"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["artist_name"], name: "index_artists_on_artist_name"
-    t.index ["artist_name_kana"], name: "index_artists_on_artist_name_kana"
   end
 
   create_table "cart_items", force: :cascade do |t|
-    t.integer "cart_id", null: false
-    t.integer "item_id", null: false
-    t.integer "quantity", default: 0, null: false
+    t.integer "cart_id"
+    t.integer "item_id"
+    t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "carts", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string "category_name", null: false
+    t.integer "item_id"
+    t.string "category_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_name"], name: "index_categories_on_category_name"
   end
 
   create_table "genres", force: :cascade do |t|
-    t.string "genre_name", null: false
+    t.string "genre_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["genre_name"], name: "index_genres_on_genre_name"
   end
 
   create_table "item_genres", force: :cascade do |t|
-    t.integer "item_id", null: false
-    t.integer "genre_id", null: false
+    t.integer "item_id"
+    t.integer "genre_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer "artist_id", null: false
-    t.integer "category_id"
-    t.string "item_name", null: false
+    t.integer "artist_id"
+    t.string "item_name"
     t.string "label"
-    t.string "image_id"
-    t.date "release_date", null: false
+    t.string "image"
+    t.date "release_date"
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["item_name"], name: "index_items_on_item_name"
   end
 
   create_table "order_items", force: :cascade do |t|
-    t.integer "order_id", null: false
-    t.integer "item_id", null: false
-    t.integer "quantity", default: 1, null: false
-    t.integer "sub_total_price", default: 0, null: false
+    t.integer "order_id"
+    t.integer "item_id"
+    t.integer "quantity"
+    t.integer "sub_total_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "last_name", null: false
-    t.string "first_name", null: false
-    t.string "last_name_kana", null: false
-    t.string "first_name_kana", null: false
-    t.string "postal_code", null: false
-    t.string "address", null: false
-    t.string "tel_num", null: false
-    t.integer "total_price", default: 0, null: false
-    t.integer "deliver", default: 0, null: false
-    t.integer "payment", default: 0, null: false
+    t.integer "user_id"
+    t.string "last_name"
+    t.string "first_name"
+    t.string "last_name_kana"
+    t.string "first_name_kana"
+    t.string "postal_code"
+    t.string "address"
+    t.string "tel_num"
+    t.integer "total_price"
+    t.integer "deliver"
+    t.integer "payment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "item_id", null: false
-    t.integer "rate", default: 6, null: false
+    t.integer "user_id"
+    t.integer "item_id"
+    t.integer "rate"
     t.text "review"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "stocks", force: :cascade do |t|
-    t.integer "item_id", null: false
-    t.integer "quantity", default: 0, null: false
+    t.integer "item_id"
+    t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "tracks", force: :cascade do |t|
-    t.integer "item_id", null: false
-    t.integer "artist_id", null: false
-    t.integer "disc_num", default: 1, null: false
-    t.integer "track_order", null: false
-    t.string "song_title", null: false
-    t.time "song_time", null: false
+    t.integer "item_id"
+    t.integer "artist_id"
+    t.integer "disc_num"
+    t.integer "track_order"
+    t.string "song_title"
+    t.time "song_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["song_title"], name: "index_tracks_on_song_title"
   end
 
   create_table "users", force: :cascade do |t|
@@ -174,7 +168,9 @@ ActiveRecord::Schema.define(version: 20180109081327) do
     t.string "postal_code"
     t.string "address"
     t.string "tel_num"
-    t.string "blacklist_flag"
+    t.boolean "blacklist_flag", default: false, null: false
+    t.boolean "retire_flag", default: false, null: false
+    t.string "retire_reason"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
