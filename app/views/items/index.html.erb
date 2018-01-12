@@ -1,5 +1,5 @@
 <div class="index-container clearfix">
-  <section class="items">
+  <section class="items clearfix">
     <h2 class="item-headline">新作</h2>
     <% @items.each do |item| %>
     <div class="item-box">
@@ -14,6 +14,7 @@
           <span class="category">Nature</span>
         </section>
       </div>
+    </div>
       <% end %>
       <div class="pagination">
         <%= paginate @items %>
