@@ -1,2 +1,67 @@
-<h1>Orders#new</h1>
-<p>Find me in app/views/orders/new.html.erb</p>
+<div class="otodokebox">
+	<h2>お届け情報の入力</h2>
+	<br>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    
+    <div class="field">
+      お名前/姓：<%= f.text_field :last_name, autofocus: true, autocomplete: "off" %>
+    </div>
+    
+    <div class="field">
+     　フリガナ/セイ：<%= f.text_field :last_name_kana, autofocus: true, autocomplete: "off" %>
+    </div>    
+
+    <div class="field">
+      お名前/名：<%= f.text_field :first_name, autofocus: true, autocomplete: "off" %>
+    </div>    
+
+    <div class="field">
+      フリガナ/メイ：<%= f.text_field :first_name_kana, autofocus: true, autocomplete: "off" %>
+    </div>    
+
+    <div class="field">
+      郵便番号：<%= f.text_field :postal_code, autofocus: true, autocomplete: "off" %>
+    </div>    
+
+    <div class="field">
+      住所：<%= f.text_field :address, autofocus: true, autocomplete: "off" %>
+    </div>    
+
+    <div class="field">
+      フリガナ/住所：<%= f.text_field :email, autofocus: true, autocomplete: "off" %>
+    </div>
+
+    <div class="field">
+      TEL：<%= f.text_field :tel_num, autofocus: true, autocomplete: "off" %>
+    </div>
+
+    <div class="field">
+      合計金額：
+    </div>
+
+    <div class="field">
+			配送方法：<%= f.select :deliver, [["ヤマト運輸", "ヤマト運輸"], ["店頭手渡し", "店頭手渡し"]] ,class:"form-control" %>
+    </div>
+
+    <div class="field">
+    お支払い方法：<%= f.select :payment, [["銀行振込", "銀行振込"], ["クレジット", "クレジットカード"]] ,class:"form-control" %>
+    </div>
+
+
+    <br>
+<!-- 
+      <div class="field">
+       	神南レコードのメールマガジンに登録しますか？
+        <%#= f.check_box :remember_me %>
+      </div> -->
+
+		<div class="otodokebutton">
+	    <div class="actions">
+	      <%= f.submit "注文を確定する" %>
+	    </div>	
+		</div>
+
+  <% end %>
+
+</div>
