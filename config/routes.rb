@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :items,only: [:index,:show]
 
   resources :orders,only: [:new,:create]
+  post 'orders/confirm' => 'orders#confirm', as: 'confirm_orders'
 
   resources :carts,only: [:show]
   post 'add_item' => 'carts#add_item'

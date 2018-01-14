@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   def index
       @items_count = Item.all.count
       @items = Item.order(id: :desc).page(params[:page]).per(10)
-      @cart_item = current_user.cart.cart_items.build
+      @cart_item = current_user.cart.cart_items.build if current_user.presence
       @genres = Genre.all
   end
 
