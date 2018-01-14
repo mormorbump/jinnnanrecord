@@ -1,1 +1,103 @@
-aaaaaaaaa
+<div class="otodokebox">
+  <h2>お届け情報の入力</h2>
+  <br>
+
+  <%= form_tag orders_path do %>
+
+    <div class="field">
+      お名前/姓：<%= @order.last_name %>
+      <%= hidden_field_tag :last_name, @order.last_name %>
+    </div>
+
+    <div class="field">
+     　フリガナ/セイ：<%= @order.last_name_kana %>
+     <%= hidden_field_tag :last_name_kana,  @order.last_name_kana %>
+    </div>
+
+    <div class="field">
+      お名前/名：<%= @order.first_name %>
+      <%= hidden_field_tag :first_name,  @order.first_name %>
+    </div>
+
+    <div class="field">
+      フリガナ/メイ：<%= @order.first_name_kana %>
+      <%= hidden_field_tag :first_name_kana,  @order.first_name_kana %>
+    </div>
+
+    <div class="field">
+      郵便番号：<%= @order.postal_code %>
+      <%= hidden_field_tag :postal_code,  @order.postal_code %>
+    </div>
+
+    <div class="field">
+      住所：<%= @order.address %>
+      <%= hidden_field_tag :address,  @order.address %>
+    </div>
+
+    <div class="field">
+      TEL：<%= @order.tel_num %>
+      <%= hidden_field_tag :tel_num,  @order.tel_num %>
+    </div>
+
+    <div class="field">
+      配送方法：<%= @order.deliver%>
+      <%= hidden_field_tag :deliver,@order.deliver %>
+    </div>
+
+    <div class="field">
+    お支払い方法：<%= @order.payment %>
+    <%= hidden_field_tag :payment, @order.payment %>
+    </div>
+    <div>
+      <table>
+        <caption>ご注文内容</caption>
+          <tr>
+            <td>タイトル</td>
+            <td>アーティスト名</td>
+            <td>枚数</td>
+            <td>料金</td>
+          </tr>
+            <% @cart_items.each do |cart_item| %>
+            <!-- 第一引数に[]をつけると、各formのnameの値がcart_items[:id][:カラム名]という感じで展開される -->
+            <!-- 構造的には、ハッシュの中にハッシュ -->
+            <!-- なので、ストロングパラメータで配列を使い展開 -->
+            <%= fields_for("cart_items[]",cart_item) do |c| %>
+          <tr>
+            <td><%= cart_item.item.item_name %></td>
+            <td><%= cart_item.item.artist.artist_name %></td>
+            <td><%= cart_item.quantity %></td>
+            <%= c.hidden_field :quantity,value: cart_item.quantity %>
+            <td><%= cart_item.item.price %></td>
+            <%#= fields_for(:items,cart_item.item) do |i| %>
+            <%#= i.hidden_field :id %>
+            <%#= i.fields_for(:cart_items,cart_item) do |c| %>
+            <!-- <td><%#= c.check_box :_destroy %></td> -->
+            <%#= c.hidden_field :id %>
+          </tr>
+          <%# end %>
+            <% end %>
+          <% end %>
+      </table>
+    </div>
+
+    <div class="field">
+      合計金額：<%= @total_price %>
+      <%= hidden_field_tag :total_price, @total_price %>
+    </div>
+
+    <br>
+<!--
+      <div class="field">
+        神南レコードのメールマガジンに登録しますか？
+        <%#= check_box :remember_me %>
+      </div> -->
+
+    <div class="otodokebutton">
+      <div class="actions">
+        <%= submit_tag "注文を確定する" %>
+      </div>
+    </div>
+
+  <% end %>
+
+</div>

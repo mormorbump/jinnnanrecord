@@ -2,6 +2,23 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @cart_items = current_user.cart.cart_items
+    # 合計金額
+    @total_price = 0
+    @cart_items.each do |cart_item|
+      @total_price += cart_item.item.price * cart_item.quantity
+    end
+  end
+
+  def confirm
+    @order = Order.new(order_params)
+    @cart_items = []
+    # 二重のハッシュ構造になってるストロングパラメータを繰り返し処理。
+    cart_items_params.each do |id, cart_item_params|
+      cart_item = CartItem.find(id)
+      cart_item.assign_attributes(cart_item_params)
+      @cart_items << cart_item
+    end
+
     @total_price = 0
     @cart_items.each do |cart_item|
       @total_price += cart_item.item.price * cart_item.quantity
@@ -9,11 +26,21 @@ class OrdersController < ApplicationController
   end
 
   def create
-    Order.create(order_params)
-    @cart_items = cart_items_params.each do |id, cart_item_param|
+    order = Order.create(order_params)
+
+    cart_items = []
+    cart_items_params.each do |id, cart_item_params|
       cart_item = CartItem.find(id)
-      cart_item.update_attributes(cart_item_param)
-      cart_item
+      cart_item.update(cart_item_params)
+      cart_items << cart_item
+    end
+
+    cart_items.each do |cart_item|
+      order_item = order.order_items.build
+      order_item.item_id = cart_item.item_id
+      order_item.quantity = cart_item.quantity
+      order_item.sub_total_price = cart_item.item.price * cart_item.quantity
+      cart_item.destroy if order_item.save
     end
     redirect_to orderlists_user_path(current_user)
   end
@@ -66,3 +93,28 @@ end
 
 
 
+
+# <ActionController::Parameters
+#  {
+#   "utf8"=>"✓",
+#   "authenticity_token"=>"5vIWXb757eOILbR8wHXs9L7KSmbBk8ONigRni4orW601uO7z/OF1Etk4oYOvcbr+Q2cWSQ8yQDoh2jhFk7glYQ==",
+#   "last_name"=>"a",
+#   "last_name_kana"=>"あ",
+#   "first_name"=>"a",
+#   "first_name_kana"=>"あ",
+#   "postal_code"=>"1",
+#   "address"=>"1",
+#   "tel_num"=>"1",
+#   "deliver"=>"0",
+#   "payment"=>"0",
+#   "cart_items"=>{
+#     "71"=>{"quantity"=>"12"},
+#     "72"=>{"quantity"=>"34"},
+#     "73"=>{"quantity"=>"1"}
+#     },
+#   "total_price"=>"2262",
+#   "commit"=>"注文を確定する",
+#   "controller"=>"orders",
+#   "action"=>"create"
+# }
+#   permitted: false>

@@ -2,10 +2,10 @@
 	<h2>お届け情報の入力</h2>
 	<br>
 
-  <%= form_tag orders_path do |f| %>
+  <%= form_tag confirm_orders_path,method: :get do %>
 
     <div class="field">
-      お名前/姓：<%= text_field_tag :last_name,  current_user.last_name %>
+      お名前/姓：<%= text_field_tag :last_name, current_user.last_name %>
     </div>
 
     <div class="field">
@@ -84,7 +84,7 @@
 
 		<div class="otodokebutton">
 	    <div class="actions">
-	      <%= submit_tag "注文を確定する" %>
+	      <%= submit_tag "確認画面へ行く" %>
 	    </div>
 		</div>
 
