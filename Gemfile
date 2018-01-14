@@ -53,6 +53,7 @@ gem 'binding_of_caller'
 # エラー画面見やすく
 gem 'annotate'
 # モデルの上に絡む表示
+gem 'colorize_unpermitted_parameters'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
