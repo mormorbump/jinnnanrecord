@@ -1,4 +1,4 @@
-class ItemsController < ApplicationController
+class ItemsController < RankingController
 
   def index
     @items_count = Item.all.count
@@ -10,8 +10,8 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @cart_item = current_user.cart.cart_items.build
+    @cart_item = current_user.cart.cart_items.build if current_user.presence
     @review = Review.new
-    @reviews = @item.reviews.order(id: :desc).page(params[:page]).per(2)
+    @reviews = @item.reviews.order(id: :desc).page(params[:page]).per(3)
   end
 end
