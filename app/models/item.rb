@@ -30,8 +30,4 @@ class Item < ApplicationRecord
   belongs_to :artist
   belongs_to :category
 
-  def display_name
-  	self.item_name
-  end
-
 end
