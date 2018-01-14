@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   resources :users,only: [:new,:show,:edit,:update]
   get 'users/:user_id/orderlists' => 'users#orderlists',as: 'orderlists_user'
 
-  resources :items,only: [:index,:show]
+  resources :items,only: [:index,:show] do
+    resource :reviews,only: [:create,:destroy]
+  end
 
   resources :orders,only: [:new,:create]
   get 'orders/confirm' => 'orders#confirm', as: 'confirm_orders'

@@ -14,7 +14,7 @@
         <% unless current_user.presence %>
         <li><%= link_to "ログインしてください。",new_user_session_path %></li>
           <% else %>
-          <% if current_user.cart_item_exists?(@item) %>
+          <% if current_user.cart_item_exists?(@item,current_user.cart) %>
           <%= link_to 'カートから外す',delete_item_path(@item),method: :delete %>
           <% else %>
            <%= form_for(@cart_item,url: add_item_path) do |f| %>
@@ -27,7 +27,6 @@
             <% end %>
           <% end %>
         <% end %>
-          <li><button type="button" name="aaa" value="aaa">お気に入り</button></li>
         </ul>
       </div>
     </div>
@@ -67,5 +66,12 @@
 				</tr>	 -->
 			</table>
 			<p>合計時間：999分</p>
+    </div>
+    <div class="review-form">
+      <%= form_for([@item,@review]) do |f| %>
+        <%= f.submit %>
+      <% end %>
+      <% @reviews.each do |review| %>
+      <% end %>
     </div>
   </main>
