@@ -93,9 +93,6 @@
               </h3>
               <div id="stars">
               </div>
-              <p class="text-small">
-                <span class="rating-star"><i class="star-actived rate-<%= r.rate %>0"><%= r.rate %></i></span>
-              </p>
               <p>
                 <%= r.review %>
               </p>
@@ -109,9 +106,13 @@
 <script src="javascripts/jquery.raty.js">
 $(function raty() {
 $.fn.raty.defaults.path = "images";
-     $("stars").raty({
+     $("#stars").raty({
           number: 5,
-          score : 3
+          score : 3,
+          size     : 36,
+  starOff: '/assets/star-off.png',
+  starOn : '/assets/star-on.png',
+  scoreName: 'review[point]'
      });
 });
 </script>

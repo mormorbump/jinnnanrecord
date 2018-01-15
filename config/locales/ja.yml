@@ -1,4 +1,10 @@
 ja:
+  status:
+    article:
+      uketuke: '受付'
+      nyuukin: '入金待ち'
+      zyunbi: '商品準備中'
+      done: '発送済み'
   activerecord:
     errors:
       messages:

@@ -27,6 +27,13 @@ class Order < ApplicationRecord
   # has_many :items, through: :order_items
   belongs_to :user
   # accepts_nested_attributes_for :items
+  class << self
+    def localed_statuses
+      statuses.keys.map do |s|
+        [ApplicationController.helpers.t("status.article.#{s}"), s]
+      end
+    end
+  end
 end
 
 
