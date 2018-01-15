@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :reviews
   
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validates :password, presence: true, length: { maximum: 255 }, allow_nil: true
 
    def cart_item_exists?(item,cart)
     cart_items = CartItem.where(cart_id: cart.id)
