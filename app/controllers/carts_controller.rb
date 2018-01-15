@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-  before_action :set_cart_item, only: [:add_item,:update_item]
+  before_action :set_cart_item, only: [:delete_item]
 
   def show
     @cart_items = current_user.cart.cart_items
@@ -20,12 +20,12 @@ class CartsController < ApplicationController
   end
 
   def update_item
-    @cart_item.update(set_cart_item)
+    @cart_item = current_user.cart.cart_items.find_by(item_id: params[:cart_item][:item_id])
+    @cart_item.update(cart_item_params)
     redirect_to cart_path(current_user.cart)
   end
 
   def delete_item
-    @cart_item = current_user.cart.cart_items.find_by(item_id: params[:item_id])
     @cart_item.destroy
     redirect_to cart_path(params[:item_id])
   end
@@ -38,7 +38,7 @@ class CartsController < ApplicationController
   private
     def set_cart_item
       # find_byで持ってくることによって存在しなかった場合に例外としない
-      @cart_item = current_user.cart.cart_items.find_by(item_id: params[:cart_item][:item_id])
+      @cart_item = current_user.cart.cart_items.find_by(item_id: params[:item_id])
     end
 
     def cart_item_params

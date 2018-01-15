@@ -10,4 +10,8 @@
 #
 
 class Category < ApplicationRecord
+  has_one :item
+	def display_name
+	  self.category_name
+	end
 end

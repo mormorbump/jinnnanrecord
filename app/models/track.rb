@@ -17,10 +17,6 @@ class Track < ApplicationRecord
 	belongs_to :item
 	belongs_to :artist
 
-	def display_name
-	  self.song_title
-	end
-
   class << self
     # 何枚組のCDか求める
     def disc_num_of_sheets

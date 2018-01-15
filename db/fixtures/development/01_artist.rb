@@ -1,5 +1,5 @@
 index = 1
-10.times do
+50.times do
   Artist.seed do |s|
     s.id = index
     s.artist_name = "歌手#{index}"

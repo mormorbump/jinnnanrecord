@@ -18,7 +18,9 @@ class Item < ApplicationRecord
   attachment :image
 
   has_many :cart_items
+  # accepts_nested_attributes_for :cart_items,allow_destroy: true
   has_many :item_genres
+  accepts_nested_attributes_for :item_genres
   has_many :order_items
   has_many :reviews, dependent: :destroy
   has_many :tracks, dependent: :destroy
