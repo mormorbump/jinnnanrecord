@@ -17,6 +17,11 @@
           <h3 class="name"><%= link_to  '購入履歴', orderlists_user_path(@user) %></h3>
           <%= link_to orderlists_user_path(@user), class:"action" do %><i class="glyphicon glyphicon-circle-arrow-right"></i></a>
           <% end %></div>
+
+        <div class="col-md-12 col-sm-6 item"><a href="#">
+          <h3 class="name"><%= link_to  '退会申請', retire_answer_path(@user) %></h3>
+           <%= link_to retire_answer_path(@user), class:"action" do %><i class="glyphicon glyphicon-circle-arrow-right"></i></a>
+          <% end %></div>
         </div>
       </div>
     </div>
