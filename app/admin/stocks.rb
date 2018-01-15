@@ -12,4 +12,16 @@ ActiveAdmin.register Stock do
 #   permitted
 # end
 
+	permit_params :item_id,:quantity
+	menu parent: "商品個別設定", label: "在庫情報"
+
+	index do
+		column :id
+		column :item_id
+		column :item_id do |item|
+			Item.where(id: Item.where(id: item.item_id).all.pluck(:id)).all.pluck(:item_name).join(', ')
+		end
+		column :quantity
+		actions
+	end
 end

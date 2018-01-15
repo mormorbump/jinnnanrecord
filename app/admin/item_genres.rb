@@ -12,6 +12,17 @@ ActiveAdmin.register ItemGenre do
 #   permitted
 # end
 
-permit_params :genre_id, :item_id
+	permit_params :genre_id, :item_id
+	menu parent: "商品個別設定", label: "ジャンル情報"
+
+	index do
+		column :item_id do |item|
+			Item.where(id: Item.where(id: item.item_id).all.pluck(:id)).all.pluck(:item_name).join(', ')
+		end
+		column :genre_id do |genre|
+			Genre.where(id: Genre.where(id: genre.genre_id).all.pluck(:id)).all.pluck(:genre_name).join(', ')
+		end
+		actions
+	end
 
 end

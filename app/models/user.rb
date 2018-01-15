@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_one :cart
   has_many :orders
   has_many :reviews
-
+  
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
    def cart_item_exists?(item,cart)
