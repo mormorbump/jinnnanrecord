@@ -1,0 +1,24 @@
+
+<div class="login_form_box">
+    <h2>本当に退会しますか？</h2>
+    <p>・購入履歴が見られなくなります！</p>
+    <p>・再び入会手続きが必要になります！</p>
+  <%= form_for(@user) do |f| %>
+    <div class="field">
+      <h3>退会の理由をお知らせ下さい。</h3>
+      <label><%= f.radio_button :retire_reason, "魅力的な商品がなかった" %>魅力的な商品がなかった</label><br>
+      <label><%= f.radio_button :retire_reason, "商品の価格が高い" %>商品の価格が高い</label><br>
+      <label><%= f.radio_button :retire_reason, "使いづらい" %>使いづらい</label><br>
+    </div>
+
+    <%= f.hidden_field :retire_flag, :value => true %>
+<br><br><br><br><br>
+    <div class="actions">
+      <%= f.submit "退会する" %>
+    </div>
+  <% end %>
+
+</div>
+
+
+
