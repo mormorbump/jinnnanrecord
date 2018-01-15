@@ -12,6 +12,16 @@ ActiveAdmin.register Track do
 #   permitted
 # end
 
-permit_params :item_id, :artist_id, :disc_num, :track_order, :song_title, :song_time
+	permit_params :item_id, :artist_id, :disc_num, :track_order, :song_title, :song_time
+	menu parent: "商品個別設定", label: "曲情報"
 
+	index do
+		column :item_id
+		column :artist_id
+		column :disc_num
+		column :track_order
+		column :song_title
+		column :song_time
+		actions
+	end
 end
