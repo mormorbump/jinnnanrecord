@@ -91,6 +91,8 @@
               <h3 class="text-xsmall text-overflow" title="テスト太郎">
                 <%= r.nickname %><small 2014=""></small>
               </h3>
+              <div id="stars">
+              </div>
               <p class="text-small">
                 <span class="rating-star"><i class="star-actived rate-<%= r.rate %>0"><%= r.rate %></i></span>
               </p>
@@ -103,3 +105,13 @@
         </ul>
       </div>
     </main>
+
+<script src="javascripts/jquery.raty.js">
+$(function raty() {
+$.fn.raty.defaults.path = "images";
+     $("stars").raty({
+          number: 5,
+          score : 3
+     });
+});
+</script>
