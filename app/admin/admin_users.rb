@@ -1,6 +1,8 @@
 ActiveAdmin.register AdminUser do
   permit_params :email, :password, :password_confirmation
 
+  menu label: "管理者情報", priority: 4
+
   index do
     selectable_column
     id_column
