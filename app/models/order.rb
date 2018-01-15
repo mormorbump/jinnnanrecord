@@ -20,8 +20,17 @@
 #
 
 class Order < ApplicationRecord
-	belongs_to :user
 	enum status: {受付:0, 入金待ち:1, 商品準備中:2, 発送済み:3}
 	enum payment: {銀行振込:0, クレジットカード:1, 店頭支払:2}
 	enum deliver: {宅配便:0, メール便:1, コンビニ受取:2, 店頭受取:3}
+  has_many :order_items
+  # has_many :items, through: :order_items
+  belongs_to :user
+  # accepts_nested_attributes_for :items
 end
+
+
+
+
+
+

@@ -1,64 +1,64 @@
 <main>
 	<div class="album_case">
 		<% if @item.image.present? %>
-      <%= attachment_image_tag @item, :image, :fill, 200, 200 %>
+    <%= attachment_image_tag @item, :image, :fill, 200, 200 %>
+    <% else %>
+    <%= image_tag 'no_image.jpg', size: '200x200',alt: "no image" %>
+    <% end %>
+    <div class="album_small_info">
+     <ul>
+      <li>CD名:<%= @item.item_name %></li>
+      <li>アーティスト名：<%= @item.artist.artist_name %></li>
+      <li>価格：¥<%= @item.price %></li>
+      <li>評価：★★★☆☆</li>
+      <% unless current_user.presence %>
+      <li><%= link_to "ログインしてください。",new_user_session_path %></li>
       <% else %>
-      <%= image_tag 'no_image.jpg', size: '200x200',alt: "no image" %>
-      <% end %>
-		<div class="album_small_info">
-			<ul>
-				<li>CD名:<%= @item.item_name %></li>
-				<li>アーティスト名：<%= @item.artist.artist_name %></li>
-				<li>価格：¥<%= @item.price %></li>
-				<li>評価：★★★☆☆</li>
-        <% unless current_user.presence %>
-        <li><%= link_to "ログインしてください。",new_user_session_path %></li>
-          <% else %>
-          <% if current_user.cart_item_exists?(@item) %>
-          <%= link_to 'カートから外す',delete_item_path(@item),method: :delete %>
-          <% else %>
-           <%= form_for(@cart_item,url: add_item_path) do |f| %>
-        <li><%= f.number_field :quantity,value: 1 %></li>
-        <%= f.hidden_field :item_id, value: @item.id %>
-        <li>
-            <%= f.submit "カートに入れる" do %>
-            <button type="button" name="aaa" value="aaa"></button></li>
-            <% end %>
-            <% end %>
-          <% end %>
+      <% if current_user.cart_item_exists?(@item,current_user.cart) %>
+      <%= link_to 'カートから外す',delete_item_path(@item),method: :delete %>
+      <% else %>
+      <%= form_for(@cart_item,url: add_item_path) do |f| %>
+      <li><%= f.number_field :quantity,value: 1 %></li>
+      <%= f.hidden_field :item_id, value: @item.id %>
+      <li>
+        <%= f.submit "カートに入れる" do %>
+        <button type="button" name="aaa" value="aaa"></button></li>
         <% end %>
-          <li><button type="button" name="aaa" value="aaa">お気に入り</button></li>
-        </ul>
-      </div>
+        <% end %>
+        <% end %>
+        <% end %>
+      </ul>
     </div>
+  </div>
 
-    <div class="album_big_info">
-      <h2>商品情報</h2>
-      <ul>
-       <li>アルバム名：<%= @item.item_name %></li>
-       <li>アーティスト名：<%= @item.artist.artist_name %></li>
-       <li>価格：¥<%= @item.price %></li>
-       <% @item.item_genres.each do |item_genre| %>
-        <li>ジャンル：<%= item_genre.genre.genre_name %></li>
-       <% end %>
-       <li>カテゴリ：<%= @item.category.category_name %></li>
-       <li>発売日：<%= @item.release_date %></li>
-       <li>枚数：<%= @item.tracks.disc_num_of_sheets %></li>
-       <li>合計時間：<%= @item.tracks.sum_of_songs %></li>
-       <%# binding pry %>
-       <li>レーベル：<%= @item.label %></li>
-     </ul>
-   </div>
+  <div class="album_big_info">
+    <h2>商品情報</h2>
+    <ul>
+     <li>アルバム名：<%= @item.item_name %></li>
+     <li>アーティスト名：<%= @item.artist.artist_name %></li>
+     <li>価格：¥<%= @item.price %></li>
+     <% @item.item_genres.each do |item_genre| %>
+     <li>ジャンル：<%= item_genre.genre.genre_name %></li>
+     <% end %>
+     <li>カテゴリ：<%= @item.category.category_name %></li>
+     <li>発売日：<%= @item.release_date %></li>
+     <% if @item.tracks.presence %>
+     <li>枚数：<%= @item.tracks.disc_num_of_sheets %></li>
+     <li>合計時間：<%= @item.tracks.sum_of_songs %></li>
+     <% end %>
+     <li>レーベル：<%= @item.label %></li>
+   </ul>
+ </div>
 
-   <div class="album_disc_info">
-     <h3>Disc1</h3>
-     <table class="album_table">
-      <tr class="album_title">
-       <th>No.</th>
-       <th>曲名</th>
-       <th>収録時間</th>
-     </tr>
-     <%# @item..each do |song| %>
+ <div class="album_disc_info">
+   <h3>Disc1</h3>
+   <table class="album_table">
+    <tr class="album_title">
+     <th>No.</th>
+     <th>曲名</th>
+     <th>収録時間</th>
+   </tr>
+   <%# @item..each do |song| %>
 <!-- 				<tr>
 					<td>1</td>
 					<td>女々しくて</td>
@@ -67,4 +67,51 @@
 			</table>
 			<p>合計時間：999分</p>
     </div>
-  </main>
+    <div class="review-form">
+      <%= form_for([@item,@review]) do |f| %>
+      <%= f.label :nickname, style: { 'margin-right' => 8 } %>
+      <%= f.text_field :nickname, placeholder: 'nickname', value: '' %>
+    </div>
+    <div style="margin: 8px 0">
+      <%= f.label :評価, style: { 'margin-right' => 8 } %>
+      <%= f.number_field :rate, placeholder: '評価', value: 1, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %>
+    </div>
+    <div style="margin: 8px 0">
+      <%= f.text_area :review, placeholder: 'レビューを書いてね！', style: 'width: 80%;height: 200px;' %>
+    </div>
+      <div class="col10 push1">
+        <%= f.submit %>
+        <% end %>
+      </div>
+      <div>
+        <ul style="padding: 0">
+          <% @item.reviews.each do |r| %>
+          <li style="border-bottom: dotted 1px">
+            <div class="thumbnail__caption">
+              <h3 class="text-xsmall text-overflow" title="テスト太郎">
+                <%= r.nickname %><small 2014=""></small>
+              </h3>
+              <div id="stars">
+              </div>
+              <p class="text-small">
+                <span class="rating-star"><i class="star-actived rate-<%= r.rate %>0"><%= r.rate %></i></span>
+              </p>
+              <p>
+                <%= r.review %>
+              </p>
+            </div>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </main>
+
+<script src="javascripts/jquery.raty.js">
+$(function raty() {
+$.fn.raty.defaults.path = "images";
+     $("stars").raty({
+          number: 5,
+          score : 3
+     });
+});
+</script>

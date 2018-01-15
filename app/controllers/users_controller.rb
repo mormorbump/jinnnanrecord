@@ -22,6 +22,17 @@ class UsersController < ApplicationController
   end
 
   def orderlists
+    @order_items = []
+    current_user.orders.each do |order|
+      order.order_items.each do |order_item|
+        @order_items << order_item
+      end
+    end
+
+    @total_price = 0
+    @order_items.each do |order_item|
+      @total_price += order_item.sub_total_price
+    end
   end
 
   private
