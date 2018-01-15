@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(version: 20180112083548) do
     t.integer "payment", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
   end
 
   create_table "reviews", force: :cascade do |t|

@@ -12,5 +12,12 @@ ActiveAdmin.register Category do
 #   permitted
 # end
 
-  permit_params :category_name
+	permit_params :category_name
+	menu parent: "マスタ設定", label: "カテゴリ"
+
+	index do
+		column :id
+		column :category_name
+		actions
+	end
 end
