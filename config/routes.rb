@@ -7,10 +7,7 @@ Rails.application.routes.draw do
 
   resources :users,only: [:new,:show,:edit,:update]
   get 'users/:user_id/orderlists' => 'users#orderlists',as: 'orderlists_user'
-<<<<<<< HEAD
   get 'users/:id/retire' => 'users#retire'
-  resources :items,only: [:index,:show]
-=======
 
   resources :items,only: [:index,:show] do
     resource :reviews,only: [:create,:destroy]
@@ -18,7 +15,6 @@ Rails.application.routes.draw do
 
   resources :orders,only: [:new,:create]
   get 'orders/confirm' => 'orders#confirm', as: 'confirm_orders'
->>>>>>> c40072d9cd9f27299212ebdadbacaa42b09009d1
 
   resources :carts,only: [:show]
   post 'add_item' => 'carts#add_item'
