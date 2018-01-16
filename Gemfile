@@ -42,7 +42,7 @@ gem 'jquery-rails'
 gem 'seed-fu'
 # データ入れるやつ
 gem 'nested_form_fields'
-# form_forをネストします
+# form_forをAjax
 gem 'activeadmin', github: 'gregbell/active_admin'
 # 管理画面のgem
 gem 'pundit'
