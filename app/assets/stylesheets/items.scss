@@ -14,19 +14,9 @@
   margin-bottom: 20px;
 }
 
-main {
-  min-width: 900px;
-  margin: 0 auto;
-  // padding: 70px 0; /* 上下に70px、左右に0pxの枠の内側の余白 */
-}
-.index-container{
-  width: 1000px;
-  margin: 0 auto;
-}
 
 .items {
   min-height: 200px;
-  width: 750px;
   float: left;
   // margin-right: 30px;
 }
@@ -38,7 +28,6 @@ main {
 div .item-box {
   float: left;
   padding: 10px;
-  width: 150px;
   height: 300px;
 }
 div .ranking-box {
@@ -91,15 +80,16 @@ div .ranking-box {
   font-size: 11px;
 }
 
-.sidebar {
-  width: 230px;
-  float: left;
-}
 .sidebar-headline, .instagram-headline, .categories-headline {
   border-bottom: 8px solid #f7f7f7;
   text-align: center;
   line-height: 0.6;
 }
+
+.sidebar-headline, .instagram-headline, .categories-headline h2{
+  margin-top:50px;
+}
+
 .sidebar-contents {
   padding: 50px 0;
 }
@@ -114,16 +104,122 @@ div .ranking-box {
   border: none;
 }
 .instagram-box {
-  float: left;
-  width: 110px;
   padding-top: 110px;
   background-size: cover;
   background-position: center;
 }
-.instagram-box:nth-child(odd) {
-  margin: 0 10px 10px 0;
-}
+
 .pagination {
   margin-top: 0px;
   width: 100%;
 }
+
+
+/*_____________________________________________*/
+/*アイテム詳細画面*/
+
+
+
+.album_case{
+  width: 100%;
+  margin-bottom: 50px;
+
+}
+
+.album_case img{
+  width: 100%;
+}
+
+.album_table{
+  margin-top: 0px;
+
+}
+
+.album_small_info{
+  height: 400px;
+
+}
+
+.album_small_info ul{
+  margin: 10px 0 0 30px;
+  list-style-type: none;
+}
+
+.album_small_info ul li{
+  margin-bottom: 20px;
+}
+
+.album_small_info ul li button{
+  font-size: 16px;
+}
+
+.album_big_info{
+  width: 100%;
+}
+
+.album_big_info h2{
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  padding-left: 30px;
+  border: 1px solid gray;
+  background-color: darkred;
+  color: white;
+}
+
+.album_big_info ul{
+  margin-left:20px;
+  list-style-type: none;
+}
+
+.album_big_info ul li{
+  margin: 20px 0px;
+}
+
+.album_disc_info{
+  margin-bottom: 100px;
+
+}
+
+.album_disc_info h3{
+  margin-top: 30px;
+  margin-left: 30px;
+}
+
+.album_disc_info p{
+float: right;
+margin:30px 150px 0 0; 
+}
+
+.album_title{
+  padding: 100px 0px;
+  height: 30px;
+  border-bottom: solid 1px black; 
+}
+
+
+.otheralubum{
+  width: 100%;
+  line-height: 70px;
+  margin-top: 150px;
+  border-top: solid 1px black;  
+}
+
+.otheralubum ul li{
+  list-style-type: none;
+  margin: 0 43px ;
+  float: left;
+}
+
+.otheralubum ul li a{
+  text-decoration: none;
+}
+
+
+.otherimage img{
+  height: 100px;
+
+}
+
+
+/*_____________________________________________*/

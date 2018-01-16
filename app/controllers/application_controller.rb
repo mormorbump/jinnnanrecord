@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
      new_user_path
     end
   end
+
   protected
 
     def configure_permitted_parameters
