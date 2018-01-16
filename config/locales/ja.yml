@@ -1,4 +1,20 @@
 ja:
+  enums:
+    order:
+      status:
+        reception: "受付"
+        deposit_wait: "入金待ち"
+        in_preparing: "商品準備中"
+        sent: "発送済み"
+      payment:
+        bank_transfer: "銀行振込"
+        credit_card: "クレジットカード"
+        pay_at_store: "店頭支払"
+      deliver:
+        home_delivery: "宅急便"
+        mail_delivery: "メール便"
+        receiving_at_a_convenience: "コンビニ受取"
+        over_the_counter_reveives: "店頭受取"
   activerecord:
     errors:
       messages:
