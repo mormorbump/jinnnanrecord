@@ -12,8 +12,20 @@
 //
 //= require rails-ujs
 //= require jquery
+//= require jquery_ujs
 //= require bootstrap
-//= require turbolinks
 //= require_tree .
 
+
+// $(function raty() {
+// // $.fn.raty.defaults.path = "";
+//      $("#stars").raty({
+//           number: 5,
+//           score : 3,
+//           size     : 36,
+//   starOff: 'star-off.png',
+//   starOn : 'star-on.png',
+//   starHalf : 'star-half.png',
+//      });
+// });
 

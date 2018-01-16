@@ -9,7 +9,7 @@
     </div>
 
     <div class="field">
-     　フリガナ/セイ：<%= text_field_tag :last_name_kana,  current_user.last_name_kana %>
+     フリガナ/セイ：<%= text_field_tag :last_name_kana,  current_user.last_name_kana %>
     </div>
 
     <div class="field">
@@ -27,16 +27,19 @@
     <div class="field">
       住所：<%= text_field_tag :address,  current_user.address %>
     </div>
+
     <div class="field">
       TEL：<%= text_field_tag :tel_num,  current_user.tel_num %>
     </div>
 
     <div class="field">
-			配送方法：<%= select_tag :deliver, options_for_select([["ヤマト運輸",0], ["店頭手渡し", 1]]) %>
+			配送方法：<%= select_tag :deliver, options_for_select(
+      [["宅急便","home_delivery"],["メール便","mail_delivery"],["コンビニ受け取り","receiving_at_a_convenience"],["店頭受取","over_the_counter_receives"]]
+      ) %>
     </div>
 
     <div class="field">
-    お支払い方法：<%= select_tag :payment, options_for_select([["銀行振込", 0], ["クレジット", 1]]) %>
+    お支払い方法：<%= select_tag :payment, options_for_select([["銀行振込", "bank_transfer"], ["クレジット", "credit_card"],["店頭支払","pay_at_store"]]) %>
     </div>
     <div>
       <table>

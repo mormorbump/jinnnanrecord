@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def new
     cart = current_user.create_cart
     cart.save
-    redirect_to root_path
+    redirect_back_or(root_path)
   end
 
   def show

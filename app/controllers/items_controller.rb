@@ -13,5 +13,6 @@ class ItemsController < RankingController
     @cart_item = current_user.cart.cart_items.build if current_user.presence
     @review = Review.new
     @reviews = @item.reviews.order(id: :desc).page(params[:page]).per(3)
+
   end
 end
