@@ -54,6 +54,9 @@ gem 'binding_of_caller'
 gem 'annotate'
 # モデルの上に絡む表示
 gem 'colorize_unpermitted_parameters'
+# ターミナルで許可されてないパラムスを色変えて表示
+gem 'enum_help'
+  # enumをyamlファイルで日本語化
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
