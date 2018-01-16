@@ -32,42 +32,48 @@ a {
   clear: both;
 }
 
+.container{
+	min-height: 1000px;
+}
 
 header{
 	width: 100%;
 	height: 70px;
 	background-color:darkred;
+	margin-bottom: 50px;
 }
 
 header .brandlogo{
-	padding-top: 10px;
-	float:left;
+	padding-top: 15px;
 }
 
 header .brandlogo img{
-	height: 50px;
+	height: 40px;
 }
 
-nav{
+.header-nav{
 	width: 100%;
+	background-color:darkred;
+
+}
+
+.pagenation{
+	background-color: none;
 }
 
 nav ul{
-	min-width: 450px;
-	float:right;
-	margin-right: 70px;
 }
 
 nav ul li{
-	min-width: 180px;
-	padding: 0 10px;
-	line-height: 70px;
+	line-height: 65px;
 	text-align: center;
 	color: white;
 	font-size: 24px;
 	font-family: Impact;
 	list-style-type: none;
 	float:left;
+	padding: 0 10px;
+	background-color: darkred;
 }
 
 nav ul li a{
@@ -75,9 +81,20 @@ nav ul li a{
 }
 
 
-main{
-	min-width: 1000px;
-	margin: 50px auto;
+.collapse ul li a{
+	color: white;
+	text-decoration:none;
+}
+
+.navbar-toggle{
+	margin-top:15px;
+	background-color:darkred;
+	border:1px solid white;
+}
+
+.icon-bar{
+	background-color: white;
+
 }
 
 .cart_image{
@@ -85,15 +102,12 @@ main{
 }
 
 .login_form_box{
-	min-width: 500px;
-	min-height: 800px;
-	margin: 50px auto 0;
+	font-size: 10px;
 	text-align: center;
-
 }
 
 .login_form_box h2{
-	text-align: left;
+	text-align: center;
 	margin-bottom: 20px;
 }
 
@@ -108,5 +122,18 @@ footer{
 	color: white;
 	text-align: center;
 	line-height: 70px;
+	margin-top: 50px;
 }
 
+
+@media screen and (max-width: 767px) {
+	nav ul{
+		width: 450px;
+		height: 65px;
+		margin:0 auto;
+	}
+	.login_form_box form .field{
+		font-size: 9px;
+	}
+
+}

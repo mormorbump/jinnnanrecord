@@ -1,9 +1,74 @@
-<div class="index-container clearfix">
-  <section class="items">
-    <h2 class="item-headline">新作</h2>
-    <div class="pagination">
-      <%= paginate @items %>:件数<%= @items_count %>
+
+  <div class="row">
+    <div class="col-md-1 "></div>
+    <div class="col-md-7">
+      <section class="items clearfix">
+        <h2 class="item-headline">新作</h2>
+        <div class="pagination">
+          <%= paginate @items %>:件数<%= @items_count %>
+        </div>
+        <div class="clearfix">
+          <% @items.each do |item| %>
+            <div class="item-box">
+              <div class="item-item clearfix">
+                <% if item.image.present? %>
+                  <%= link_to (attachment_image_tag item, :image, :fill,130, 130,alt: "disc image"),item_path(item) %>
+                <% else %>
+                  <%= image_tag 'no_image.jpg', size: '20x40',alt: "no image" %>
+                <% end %>
+              <section class="item-text-box">
+                <p class="item-artist"><%= item.artist.artist_name %></p>
+                <p class="item-name"><%= item.item_name %></p>
+                <p class="item-category"><%= item.category.category_name %></p>
+                <p class="item-price">¥ <%= item.price %></p>
+                <% if current_user.presence %>
+                <% if current_user.cart_item_exists?(item,@cart) %>
+                  <span class="item-cart">
+                    <%= link_to 'カートから外す',delete_item_path(item),method: :delete %>
+                  </span>
+                <% else %>
+                  <%= form_for(@cart_item, url: add_item_path) do |f| %>
+                    <%= f.hidden_field :item_id, value: item.id %>
+                    <%= f.hidden_field :quantity, value: 1 %>
+                    <span class="item-cart">
+                      <%= f.submit "カートに入れる" %>
+                    </span>
+                  <% end %>
+                <% end %>
+                <% end %>
+              </section>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </section>
     </div>
+    
+    <div class="col-md-3">
+      <section class="instagram">
+        <h2 class="sidebar-headline">検索</h2>
+        <h2 class="instagram-headline">ジャンル</h2>
+        <div class="sidebar-contents clearfix">
+          <div class="genre-box">
+          <% @genres.each do |genre| %>
+          <p><%= genre.genre_name %></p>
+          <% end %>
+        </div>
+        </div>
+      </section>
+      <section class="categories">
+        <h2 class="categories-headline">順位</h2>
+        <% @ranking.each.with_index(1) do |item,rank| %>
+          <div class="ranking-box clearfix">
+            <div class="rank">
+            <%= rank %>
+          </div>
+            <div class="rank-item">
+              <% if item.image.present? %>
+                <%= link_to (attachment_image_tag item, :image, :fill,90, 90,alt: "disc image"),item_path(item) %>
+              <% else %>
+                <%= image_tag 'no_image.jpg', size: '20x40',alt: "no image" %>
+              
     <div class="clearfix">
       <% @items.each do |item| %>
         <div class="item-box">
@@ -30,16 +95,19 @@
                 <span class="item-cart">
                   <%= f.submit "カートに入れる" %>
                 </span>
+            
               <% end %>
-            <% end %>
-            <% end %>
-          </section>
           </div>
+            <section class="rank-text-box">
+              <p class="item-name"><%= item.item_name %></p>
+              <p class="item-artist"><%= item.artist.artist_name %></p>
+            </section>
         </div>
-      <% end %>
+        <% end %>
+      </section>
     </div>
-  </section>
 
+    <div class="col-md-1 "></div>
   <div class="sidebar">
     <section class="popular">
       <h2 class="sidebar-headline">検索</h2>
