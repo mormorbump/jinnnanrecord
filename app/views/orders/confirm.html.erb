@@ -40,12 +40,12 @@
     </div>
 
     <div class="field">
-      配送方法：<%= @order.deliver%>
+      配送方法：<%= @order.deliver_i18n %>
       <%= hidden_field_tag :deliver,@order.deliver %>
     </div>
 
     <div class="field">
-    お支払い方法：<%= @order.payment %>
+    お支払い方法：<%= @order.payment_i18n %>
     <%= hidden_field_tag :payment, @order.payment %>
     </div>
     <div>

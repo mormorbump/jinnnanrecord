@@ -33,8 +33,22 @@ class Item < ApplicationRecord
   belongs_to :category
 
   def review_average
-    reviews.average(:rate).round
+    reviews.average(:rate)
     # 頭のself.を省略している。selfはメソッドを使ったレシーバ（自分自身）を代入できるメソッド。productに使ってproductのreviewsの平均値を取りたいのでself.~として省略したみたいな感じ。.roundは四捨五入して整数にするメソッド。
+  end
+  def average_rate_star
+    case review_average.round
+      when 1 then
+         "★☆☆☆☆"
+      when 2 then
+         "★★☆☆☆"
+      when 3 then
+         "★★★☆☆"
+      when 4 then
+         "★★★★☆"
+      when 5 then
+         "★★★★★"
+      end
   end
 
 end

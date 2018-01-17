@@ -1,41 +1,53 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>神南レコード</title>
-  <%= csrf_meta_tags %>
+  <head>
+    <title>神南レコード</title>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' %>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/jquery.raty.js"></script>
+  </head>
+  
+  <body>
+    <header>
+      <nav class="navbar danger header-nav">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample2">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <%= link_to (image_tag "jinnanlogo.png"),root_path, alt:"jinnan record",:class => "navbar-brand brandlogo" %>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navbarEexample2">
+            <ul class="navbar-right">
+              <% if user_signed_in? %>
+              <li><%= link_to 'マイページ', user_path(current_user) %></li>
+              <% if current_user.cart.presence %>
+              <li><%= link_to 'カート', cart_path(current_user.cart) %></li>
+              <% end %>
+              <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+              <% else %>
+              <li><%= link_to 'ログイン', new_user_session_path %></li>
+              <li><%= link_to '新規登録', new_user_registration_path %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
 
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application' %>
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3/jquery.min.js"></script>
-  <script type="text/javascript" src="javascripts/jquery.raty.js"></script>
-</head>
-<body>
-  <header>
-    <nav>
-      <div class="brandlogo">
-        <%= link_to (image_tag "jinnanlogo.png"),root_path,alt:"jinnan record" %>
-      </div>
-      <ul>
-        <% if user_signed_in? %>
-        <li><%= link_to 'マイページ', user_path(current_user) %></li>
-        <% if current_user.cart.presence %>
-        <li><%= link_to 'カート', cart_path(current_user.cart) %></li>
-        <% end %>
-        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-        <% else %>
-        <li><%= link_to 'ログイン', new_user_session_path %></li>
-        <li><%= link_to '新規登録', new_user_registration_path %></li>
-        <% end %>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-    <%= yield %>
-  </main>
-
-  <footer>
-   <%= link_to "@",admin_root_path %>神南レコード @Infratop 2017
- </footer>
-</body>
+    <div class="container">
+      <%= yield %>
+    </div>
+    
+    <footer>
+     <%= link_to "@",admin_root_path %>神南レコード @Infratop 2017
+   </footer>
+  </body>
 </html>
