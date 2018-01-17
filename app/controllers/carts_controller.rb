@@ -12,17 +12,30 @@ class CartsController < ApplicationController
 
   def add_item
     @cart_item = current_user.cart.cart_items.build(cart_item_params) if @cart_item.nil?
-    # binding pry
-    # paramsメソッドの型は全て文字列なので、integerに変換
-    @cart_item.quantity += params[:quantity].to_i
-    @cart_item.save
+    @item = @cart_item.item
+    stock = @item.stock
+    if params[:quantity] >= stock.quantity
+      # paramsメソッドの型は全て文字列なので、integerに変換
+      @cart_item.quantity += params[:quantity].to_i
+      @cart_item.save
     redirect_to cart_path(current_user.cart)
+    else
+      flash[:alert] = "在庫がありません"
+      render item_path(@item)
+    end
   end
 
   def update_item
     @cart_item = current_user.cart.cart_items.find_by(item_id: params[:cart_item][:item_id])
-    @cart_item.update(cart_item_params)
-    redirect_to cart_path(current_user.cart)
+    @item = @cart_item.item
+    stock = @item.stock
+    if params[:quantity] >= stock.quantity
+      @cart_item.update(cart_item_params)
+      redirect_to cart_path(current_user.cart)
+    else
+      flash[:alert] = "在庫がありません"
+      render item_path(@item)
+    end
   end
 
   def delete_item
