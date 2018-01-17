@@ -67,9 +67,10 @@
               <% if item.image.present? %>
                 <%= link_to (attachment_image_tag item, :image, :fill,90, 90,alt: "disc image"),item_path(item) %>
               <% else %>
-                <%= image_tag 'no_image.jpg', size: '20x40',alt: "no image" %>
+                <%= image_tag 'no_image.jpg', size: '90x90',alt: "no image" %>
               <% end %>
             </div>
+          </div>
         <% end %>
       </section>
     <div class="col-md-1"></div>

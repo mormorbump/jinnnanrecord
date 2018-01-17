@@ -11,7 +11,11 @@ ActiveAdmin.register Item do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-	permit_params :artist_id, :item_name, :label, :release_date, :price, :category_id, :image, item_genres_attributes: [:genre_id, :_destroy], stock_attributes: [:quantity, :_destroy], tracks_attributes: [:artist_id, :disc_num, :track_order, :song_title, :song_time, :_destroy]
+	permit_params :artist_id, :item_name, :label, :release_date, :price, :category_id, :image,
+			item_genres_attributes: [:genre_id, :_destroy],
+			stock_attributes: [:quantity, :_destroy],
+			tracks_attributes: [:artist_id, :disc_num, :track_order, :song_title, :song_time, :_destroy]
+
 	menu label: "商品情報", priority: 2
 
 	controller do
@@ -43,7 +47,7 @@ ActiveAdmin.register Item do
 			# f.has_many :item_genres, heading: false,
 			# 	allow_destroy: true,
 			# 	new_record: true do |datacenter_form|
-			# 	datacenter_form.input :genre_id        
+			# 	datacenter_form.input :genre_id
 			# end
 			f.has_many :item_genres do |datacenter_form|
 		    	datacenter_form.input :genre_id, :allow_destroy => true
@@ -143,7 +147,7 @@ ActiveAdmin.register Item do
 			row :label
 			row :release_date
 			row :price
-			row :category_id			
+			row :category_id
 			# row :image do |i|
 			# 	# image_tag(i.image.url(:thumb), :height => '100')
 			#     link_to(image_tag(i.image.url(:thumb), :height => '100'), admin_item_path(i))
@@ -166,14 +170,14 @@ ActiveAdmin.register Item do
 			# 	image_tag(img.picture.url(:thumb))
 			# end
 
-			# row :image do	
+			# row :image do
 			# 	image_tag(img.image.url(:thumb))
 			# end
 			row :image do
 				# resource.image_id? ? image_tag(resource.image_id.url, height: '100') : content_tag(:span, "No photo yet")
 				# if resource.image_id
 				# 	content_tag(:span, "登録済み")
-				# else 
+				# else
 				# 	content_tag(:span, "未登録")
 				# end
 
