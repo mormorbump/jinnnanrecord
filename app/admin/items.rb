@@ -11,7 +11,8 @@ ActiveAdmin.register Item do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-	permit_params :artist_id, :item_name, :label, :release_date, :price,:category_id, item_genres_attributes: [:genre_id, :_destroy], stock_attributes: [:quantity, :_destroy], tracks_attributes: [:artist_id, :disc_num, :track_order, :song_title, :song_time, :_destroy]
+	permit_params :artist_id, :item_name, :label, :release_date, :price, :category_id, :image, item_genres_attributes: [:id, :genre_id, :_destroy], stock_attributes: [:quantity, :_destroy], tracks_attributes: [:id, :artist_id, :disc_num, :track_order, :song_title, :song_time, :_destroy]
+
 	menu label: "商品情報", priority: 2
 
 	controller do
@@ -25,6 +26,10 @@ ActiveAdmin.register Item do
 		column :artist_id do |item|
 			Artist.where(id: Artist.where(id: item.id).all.pluck(:id)).all.pluck(:artist_name).join(', ')
 		end
+		# ロードが遅くなるので一覧にはジャケット画像は表示しない
+		# column :image do |img|
+		# 	attachment_image_tag(img, :image, :fill, 100, 100)
+		# end
 		column :label
 		column :release_date
 		column :price
@@ -39,41 +44,54 @@ ActiveAdmin.register Item do
 			f.input :release_date , :as => :date_picker
 			f.input :price
 			f.input :category_id, :as => :select, :collection => Category.all
+
+			f.has_many :item_genres do |ig|
+				ig.input :genre_id, :as => :select, :collection => Genre.all
+				ig.input :_destroy, :as => :boolean, :required => false, :label => 'Remove'
+			end
+
+			f.has_many :tracks do |t|
+				t.input :artist_id, :as => :select, :collection => Artist.all
+				t.input :disc_num
+				t.input :track_order
+				t.input :song_title
+				t.input :song_time
+				t.input :_destroy, :as => :boolean, :required => false, :label => 'Remove'
+			end
+
+			f.inputs "在庫", :for => [:stock, f.object.stock || Stock.new] do |s|
+				s.input :quantity
+			end
+			f.actions
 		end
-
-		# f.has_many :item_genres, allow_destroy: true, heading: false, new_record: true do |ab|
-		# 	ab.input :genre_id,
-		# 	label: 'ジャンル',
-		# 	as: :select,
-		# 	collection: Genre.all.map { |a| [a.genre_name, a.id] }
-		# end
-
-		f.inputs "在庫", :for => [:stock, f.object.stock || Stock.new] do |s|
-	    	s.input :quantity
-	    end
-
-		f.actions
 	end
 
 	show do |i|
 		attributes_table  do
-			row :artist_id
-			row 'アーティスト名' do
-				Artist.where(id: Artist.where(id: resource.id).all.pluck(:artist_id)).all.pluck(:artist_name).join(',')
-			end
+			row :artist
 			row :item_name
 			row :label
 			row :release_date
 			row :price
-			row :category_id
-			# row :image do |obj|
-		 #        image_tag(obj.image.expiring_url(10))
-		 #    end
+			row :category
+			row :image do
+				attachment_image_tag(i, :image, :fill, 300, 300)
+			end
 		end
 
 		panel 'ジャンル' do
 			attributes_table_for i.item_genres do
-				row :genre_id
+				row :genre
+			end
+		end
+
+		panel '曲' do
+			attributes_table_for i.tracks do
+				row :artist
+				row :disc_num
+				row :track_order
+				row :song_title
+				row :song_time
 			end
 		end
 

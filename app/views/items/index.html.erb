@@ -1,5 +1,5 @@
 <div class="index-container clearfix">
-  <section class="items">
+  <section class="items float">
     <h2 class="item-headline">新作</h2>
     <div class="pagination">
       <%= paginate @items %>:件数<%= @items_count %>
@@ -40,11 +40,10 @@
     </div>
   </section>
 
-  <div class="sidebar">
+  <div class="sidebar float">
     <section class="popular">
       <h2 class="sidebar-headline">検索</h2>
-      <div class="sidebar-contents">
-      </div>
+      <div class="sidebar-contents"></div>
     </section>
     <section class="instagram">
       <h2 class="instagram-headline">ジャンル</h2>
