@@ -14,14 +14,14 @@ class CartsController < ApplicationController
     @cart_item = current_user.cart.cart_items.build(cart_item_params) if @cart_item.nil?
     @item = @cart_item.item
     stock = @item.stock
-    if params[:quantity] >= stock.quantity
+    if stock.presence && (params[:cart_item][:quantity].to_i <= stock.quantity)
       # paramsメソッドの型は全て文字列なので、integerに変換
-      @cart_item.quantity += params[:quantity].to_i
       @cart_item.save
+      # stock.quantity -= params[:cart_item][:quantity].to_i
     redirect_to cart_path(current_user.cart)
     else
       flash[:alert] = "在庫がありません"
-      render item_path(@item)
+      redirect_to item_path(@item)
     end
   end
 
@@ -29,12 +29,13 @@ class CartsController < ApplicationController
     @cart_item = current_user.cart.cart_items.find_by(item_id: params[:cart_item][:item_id])
     @item = @cart_item.item
     stock = @item.stock
-    if params[:quantity] >= stock.quantity
+    if stock.presence && (params[:cart_item][:quantity].to_i <= stock.quantity)
       @cart_item.update(cart_item_params)
+      # stock.quantity -= params[:cart_item][:quantity].to_i
       redirect_to cart_path(current_user.cart)
     else
       flash[:alert] = "在庫がありません"
-      render item_path(@item)
+      redirect_to cart_path(current_user)
     end
   end
 

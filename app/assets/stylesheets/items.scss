@@ -34,7 +34,7 @@ div .ranking-box {
   // float: left;
   margin: 0 auto;
   padding: 4px;
-  width: 165px;
+  width: 190px;
   // height: 300px;
 }
 .rank{
@@ -80,7 +80,7 @@ div .ranking-box {
   font-size: 11px;
 }
 
-.sidebar-headline, .instagram-headline, .categories-headline {
+.sidebar-headline, .genre-headline, .categories-headline {
   border-bottom: 8px solid #f7f7f7;
   text-align: center;
   line-height: 0.6;
@@ -99,11 +99,7 @@ div .ranking-box {
   padding: 0;
   border: none;
 }
-.instagram-box {
-  padding-top: 110px;
-  background-size: cover;
-  background-position: center;
-}
+
 
 .pagination {
   margin-top: 0px;
