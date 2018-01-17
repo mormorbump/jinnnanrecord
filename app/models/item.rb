@@ -51,4 +51,7 @@ class Item < ApplicationRecord
       end
   end
 
+  def user_review_exists?(user)
+    reviews.where(user_id: user.id).presence
+  end
 end

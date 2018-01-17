@@ -175,7 +175,7 @@ ActiveRecord::Schema.define(version: 20180117014130) do
     t.string "postal_code"
     t.string "address"
     t.string "tel_num"
-    t.integer "blacklist_flag"
+    t.integer "blacklist_flag", default: 0, null: false
     t.boolean "retire_flag", default: false, null: false
     t.string "retire_reason"
     t.index ["email"], name: "index_users_on_email", unique: true
