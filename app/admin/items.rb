@@ -11,7 +11,9 @@ ActiveAdmin.register Item do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
+  
 	permit_params :artist_id, :item_name, :label, :release_date, :price, :category_id, :image, item_genres_attributes: [:id, :genre_id, :_destroy], stock_attributes: [:quantity, :_destroy], tracks_attributes: [:id, :artist_id, :disc_num, :track_order, :song_title, :song_time, :_destroy]
+
 	menu label: "商品情報", priority: 2
 
 	controller do
@@ -73,6 +75,7 @@ ActiveAdmin.register Item do
 			row :label
 			row :release_date
 			row :price
+
 			row :category
 			row :image do
 				attachment_image_tag(i, :image, :fill, 300, 300)
