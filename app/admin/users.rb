@@ -39,7 +39,7 @@ ActiveAdmin.register User do
 	form do |f|
 		f.inputs do
 			f.input :email
-			f.input :password
+			# f.input :password
 			f.input :last_name
 			f.input :first_name
 			f.input :last_name_kana
@@ -56,12 +56,10 @@ ActiveAdmin.register User do
 	show do |i|
 		attributes_table  do
 			row :email
-			row :password
 			row :last_name
 			row :first_name
 			row :last_name_kana
 			row :first_name_kana
-			row :nickname
 			row :postal_code
 			row :address
 			row :tel_num
