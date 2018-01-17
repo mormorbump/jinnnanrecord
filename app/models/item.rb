@@ -19,6 +19,7 @@ class Item < ApplicationRecord
 
   has_many :cart_items
   has_many :item_genres, dependent: :destroy
+  has_many :genres, through: :item_genres
   accepts_nested_attributes_for :item_genres, allow_destroy: true
 
   has_many :order_items

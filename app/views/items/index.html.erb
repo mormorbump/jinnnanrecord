@@ -52,7 +52,7 @@
       <div class="sidebar-contents clearfix">
         <div class="genre-box">
         <% @genres.each do |genre| %>
-        <p><%= genre.genre_name %></p>
+        <p><%= link_to genre.genre_name,root_path(genre_id: genre.id) %></p>
         <% end %>
       </div>
       </div>
