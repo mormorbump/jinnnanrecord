@@ -1,31 +1,39 @@
-<table>
-   <h2 class="text-center">購入履歴</h2>
-  <% if @order_items.presence %>
-  <tr class="columntitle">
-    <th>　　　　</th>
-    <th>アルバム名</th>
-    <th>アーティスト名</th>
-    <th>価格</th>
-    <th>数量</th>
-  </tr>
-    <% @order_items.each do |order_item| %>
-    <tr>
-      <td><% if order_item.item.image.present? %>
-        <%= attachment_image_tag order_item.item, :image, :fill, 200, 200,class: "cart_image" %>
-        <% else %>
-        <%= image_tag 'no_image.jpg', size: '200x200',alt: "no image" ,class: "cart_image"%>
-        <% end %></td>
-        <td><%= link_to order_item.item.item_name, item_path(order_item.item) %></td>
-        <td><%= order_item.item.item_name %></td>
-        <td><%= order_item.item.price %>円</td>
-        <td><%= order_item.quantity %></td>
+<div class="row">
+  <div class="col-md-1 "></div>
+  <div class="col-md-10">
+
+    <table>
+       <h2 class="text-center">購入履歴</h2>
+      <% if @order_items.presence %>
+        <tr class="columntitle">
+          <th>　　　　</th>
+          <th>アルバム名</th>
+          <th>アーティスト名</th>
+          <th>価格</th>
+          <th>数量</th>
         </tr>
-        <% end %>
-      </table>
-      <%= paginate @order_items %>
-      <div class="shokei">
-      </div>
+          <% @order_items.each do |order_item| %>
+          <tr>
+            <td><% if order_item.item.image.present? %>
+              <%= attachment_image_tag order_item.item, :image, :fill, 200, 200,class: "cart_image" %>
+              <% else %>
+              <%= image_tag 'no_image.jpg', size: '200x200',alt: "no image" ,class: "cart_image"%>
+              <% end %></td>
+              <td><%= link_to order_item.item.item_name, item_path(order_item.item) %></td>
+              <td><%= order_item.item.item_name %></td>
+              <td><%= order_item.item.price %>円</td>
+              <td><%= order_item.quantity %></td>
+              </tr>
+          <% end %>
+        </table>
+            <%= paginate @order_items %>
+            <div class="shokei">
+            </div>
       <% else %>
-      <p>商品はありません</p>
+        <p class="nonitems">購入した商品がありません</p>
       <% end %>
     </table>
+  </div>
+  <div class="col-md-1 "></div>
+</div>
+
