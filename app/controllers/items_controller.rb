@@ -10,6 +10,11 @@ class ItemsController < RankingController
       @items = genre.items.order(id: :desc).page(params[:page]).per(10)
       @items_count = genre.items.count
     end
+    # 検索機能
+    if params[:search].presence
+    @search_form = ItemSearchForm.new(item_search_form_params)
+      @items = @search_form.search
+    end
 
     @cart = Cart.find_by(user_id: current_user)
     @cart_item = @cart.cart_items.build if current_user.presence
@@ -21,5 +26,9 @@ class ItemsController < RankingController
     @review = Review.new
     @reviews = @item.reviews.order(id: :desc).page(params[:page]).per(3)
     @stock = @item.stock
+  end
+
+  def item_search_form_params
+    params.require(:search).permit(:item_name, :artist_name, :artist_name_kana)
   end
 end
