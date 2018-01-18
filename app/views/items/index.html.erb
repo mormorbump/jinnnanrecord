@@ -2,7 +2,7 @@
   <section class="items float">
     <h2 class="item-headline">新作</h2>
     <div class="pagination">
-      <%= paginate @items %>:件数<%= @items_count %>
+      <%= paginate @items %>件数:<%= @items_count %>
     </div>
     <div class="clearfix">
       <% @items.each do |item| %>
@@ -24,12 +24,14 @@
                 <%= link_to 'カートから外す',delete_item_path(item),method: :delete %>
               </span>
             <% else %>
-              <%= form_for(@cart_item, url: add_item_path) do |f| %>
-                <%= f.hidden_field :item_id, value: item.id %>
-                <%= f.hidden_field :quantity, value: 1 %>
-                <span class="item-cart">
-                  <%= f.submit "カートに入れる" %>
-                </span>
+              <% if item.stock.nil? || item.stock.quantity <= 0 %>
+                <p>※※在庫がありません※※</p>
+              <% else %>
+                <%= form_for(@cart_item, url: add_item_path) do |f| %>
+                  <%= f.hidden_field :item_id, value: item.id %>
+                  <%= f.hidden_field :quantity, value: 1 %>
+                  <p><%= f.submit "カートに入れる" %></p>
+                <% end %>
               <% end %>
             <% end %>
             <% end %>
@@ -45,12 +47,12 @@
       <h2 class="sidebar-headline">検索</h2>
       <div class="sidebar-contents"></div>
     </section>
-    <section class="instagram">
-      <h2 class="instagram-headline">ジャンル</h2>
+    <section class="genre">
+      <h2 class="genre-headline">ジャンル</h2>
       <div class="sidebar-contents clearfix">
         <div class="genre-box">
         <% @genres.each do |genre| %>
-        <p><%= genre.genre_name %></p>
+        <p><%= link_to genre.genre_name,root_path(genre_id: genre.id) %></p>
         <% end %>
       </div>
       </div>
@@ -61,19 +63,19 @@
         <div class="ranking-box clearfix">
           <div class="rank">
           <%= rank %>
-        </div>
-          <div class="rank-item clarfix">
+          </div>
+          <div class="rank-item">
             <% if item.image.present? %>
               <%= link_to (attachment_image_tag item, :image, :fill,90, 90,alt: "disc image"),item_path(item) %>
             <% else %>
-              <%= image_tag 'no_image.jpg', size: '90x90',alt: "no image" %>
+              <%= link_to (image_tag 'no_image.jpg', size: '90x90',alt: "no image"),item_path(item) %>
             <% end %>
-        </div>
+          </div>
           <section class="rank-text-box">
             <p class="item-name"><%= item.item_name %></p>
             <p class="item-artist"><%= item.artist.artist_name %></p>
           </section>
-      </div>
+        </div>
       <% end %>
     </section>
   </div>

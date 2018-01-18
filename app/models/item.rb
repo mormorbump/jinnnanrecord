@@ -19,6 +19,7 @@ class Item < ApplicationRecord
 
   has_many :cart_items
   has_many :item_genres, dependent: :destroy
+  has_many :genres, through: :item_genres
   accepts_nested_attributes_for :item_genres, allow_destroy: true
 
   has_many :order_items
@@ -36,6 +37,7 @@ class Item < ApplicationRecord
     reviews.average(:rate)
     # 頭のself.を省略している。selfはメソッドを使ったレシーバ（自分自身）を代入できるメソッド。productに使ってproductのreviewsの平均値を取りたいのでself.~として省略したみたいな感じ。.roundは四捨五入して整数にするメソッド。
   end
+
   def average_rate_star
     case review_average.round
       when 1 then
@@ -53,5 +55,13 @@ class Item < ApplicationRecord
 
   def user_review_exists?(user)
     reviews.where(user_id: user.id).presence
+  end
+
+# returnのところでメソッドが止まるのでこれでおっけー
+  def user_ordered?(user)
+    order_items.each do |order_item|
+      return true if order_item.order.user_id == user.id
+    end
+    return false
   end
 end
