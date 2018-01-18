@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
      new_user_path
     end
   end
-  
+
   def store_location
     if (request.fullpath != "/users/sign_in" &&
         request.fullpath != "/users/sign_up" &&
