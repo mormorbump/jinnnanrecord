@@ -2,7 +2,9 @@ class CartsController < ApplicationController
   before_action :set_cart_item, only: [:delete_item]
 
   def show
+    # N+1よりアソシエーションの方が二行少なかった
     @cart_items = current_user.cart.cart_items
+    # @cart_items = CartItem.includes(cart: :user).all
     @total_price = 0
 
     @cart_items.each do |cart_item|
@@ -27,6 +29,7 @@ class CartsController < ApplicationController
 
   def update_item
     @cart_item = current_user.cart.cart_items.find_by(item_id: params[:cart_item][:item_id])
+    # @cart_item = CartItem.includes(cart: :user).find_by(item_id: params[:cart_item][:item_id])
     @item = @cart_item.item
     stock = @item.stock
     if stock.presence && (params[:cart_item][:quantity].to_i <= stock.quantity)

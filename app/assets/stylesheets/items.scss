@@ -53,6 +53,11 @@ div .ranking-box {
 .rank-text-box {
   float: left;
 }
+.genre-headline {
+  border-bottom: 8px solid #f7f7f7;
+  text-align: center;
+  line-height: 0.6;
+}
 
 .genre-box{
   margin: 0 auto;
@@ -211,6 +216,12 @@ margin:30px 150px 0 0;
 .otherimage img{
   height: 100px;
 
+}
+
+.search_form{
+  text-align: center;
+  width: 200px;
+  margin: 0 auto;
 }
 
 
