@@ -45,15 +45,22 @@
     </div>
 
     <div class="col-md-3">
-      <section class="instagram">
+      <section class="search">
         <h2 class="sidebar-headline">検索</h2>
         <div class="search_form">
           <%= form_for ItemSearchForm.new, as: 'search', url: :items, html: {method: :get} do |f| %>
-            <%= f.text_field :item_name %>
+            <p><%= f.label :item_name,"商品名検索" %></p>
+            <p><%= f.text_field :item_name %></p>
+            <p><%= f.label :artist_name,"アーティスト名検索" %></p>
+            <p><%= f.text_field :artist_name %></p>
+            <p><%= f.label :song_title,"曲名検索" %></p>
+            <p><%= f.text_field :song_title %></p><p>
+              <%= f.label :song_title,"カテゴリ検索" %></p>
+            <p><%= f.text_field :category_name %></p>
             <%= f.submit %>
           <% end %>
         </div>
-        <h2 class="instagram-headline">ジャンル</h2>
+        <h2 class="genre-headline">ジャンル</h2>
         <div class="sidebar-contents clearfix">
           <div class="genre-box">
             <% @genres.each do |genre| %>
@@ -67,8 +74,8 @@
         <% @ranking.each.with_index(1) do |item,rank| %>
           <div class="ranking-box clearfix">
             <div class="rank">
-            <%= rank %>
-          </div>
+              <%= rank %>
+            </div>
             <div class="rank-item">
               <% if item.image.present? %>
                 <%= link_to (attachment_image_tag item, :image, :fill,90, 90,alt: "disc image"),item_path(item) %>
@@ -77,9 +84,9 @@
               <% end %>
             </div>
             <section class="rank-text-box">
-            <p class="item-name"><%= item.item_name %></p>
-            <p class="item-artist"><%= item.artist.artist_name %></p>
-          </section>
+              <p class="item-name"><%= item.item_name %></p>
+              <p class="item-artist"><%= item.artist.artist_name %></p>
+            </section>
           </div>
         <% end %>
       </section>
