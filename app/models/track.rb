@@ -17,6 +17,11 @@ class Track < ApplicationRecord
 	belongs_to :item
 	belongs_to :artist
 
+  validates :disc_num, presence: true
+  validates :track_order, presence: true
+  validates :song_title, presence: true
+  validates :song_time, presence: true
+
   class << self
     # 何枚組のCDか求める
     def disc_num_of_sheets
