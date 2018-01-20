@@ -33,6 +33,10 @@ class Item < ApplicationRecord
   belongs_to :artist
   belongs_to :category
 
+  validates :release_date, presence: true
+  validates :price, presence: true
+  validates :item_name, presence: true
+
   def review_average
     reviews.average(:rate)
     # 頭のself.を省略している。selfはメソッドを使ったレシーバ（自分自身）を代入できるメソッド。productに使ってproductのreviewsの平均値を取りたいのでself.~として省略したみたいな感じ。.roundは四捨五入して整数にするメソッド。
