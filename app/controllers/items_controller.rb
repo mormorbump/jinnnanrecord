@@ -15,7 +15,7 @@ class ItemsController < RankingController
       @search_form = ItemSearchForm.new(item_search_form_params)
       items = @search_form.search
       @items = Kaminari.paginate_array(items).page(params[:page]).per(12)
-      @items_count = items.count
+      @items_count = items.length
     end
 
     @cart = Cart.find_by(user_id: current_user)

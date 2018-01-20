@@ -31,7 +31,7 @@
                    <p>※※在庫がありません※※</p>
                  <% else %>
                     <%= form_for(@cart_item,url: add_item_path) do |f| %>
-                    <li><%= f.number_field :quantity,value: 1 %></li>
+                    <li><%= f.number_field :quantity,value: 1,max: @stock.quantity %></li>
                     <%= f.hidden_field :item_id, value: @item.id %>
                     <li>
                     <%= f.submit "カートに入れる" do %>
@@ -100,7 +100,7 @@
           </div>
           <div style="margin: 8px 0">
             <%= f.label :評価, style: { 'margin-right' => 8 } %>
-            <%= f.number_field :rate, placeholder: '評価', value: 1, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %>
+            <%= f.number_field :rate, placeholder: '評価', value: 1, max: 5, min: 1, html: { class: "search__query", style: 'text-align: right;' } %>
           </div>
           <div style="margin: 8px 0">
             <%= f.text_area :review, placeholder: 'レビューを書いてね！', style: 'width: 80%;height: 200px;' %>
@@ -127,7 +127,7 @@
                     <div id="stars">
                     </div>
                     <p class="text-small">
-                      <span class="rating-star"><i class="star-actived rate-<%= r.rate %>0"><%= r.rate %></i></span>
+                      <span class="rating-star"><%= r.rate_star %></span>
                     </p>
                     <p>
                       <%= r.review %>

@@ -12,9 +12,13 @@ class ItemSearchForm
     rel = rel.where("item_name like ?", "%#{item_name}%") if item_name.present?
     # =&gtは => と同じ。というか文字化け
     # joinsは内部結合。Itemに関連付いてるものだけを検索
-    rel = rel.joins(:artist).where("artist.artist_name like ?", "%#{artist_name}%") if artist_name.present?
-    rel = rel.joins(:tracks).where("track.song_title like ?", "%#{song_title}%") if song_title.present?
-    rel = rel.joins(:category).where("category.category_name like ?", "%#{category_name}%") if category_name.present?
+    # *はカラム全ての省略形
+    # selectにはテーブル名が入る
+    # whereにもテーブル名、というかsql文が入る
+    rel = rel.joins(:artist).select("items.*, artists.*").where("artists.artist_name like ?", "%#{artist_name}%") if artist_name.present?
+
+    rel = rel.joins(:tracks).select("items.*, tracks.*").where("tracks.song_title like ?", "%#{song_title}%") if song_title.present?
+    rel = rel.joins(:category).select("items.*, categories.*").where("categories.category_name like ?", "%#{category_name}%") if category_name.present?
     rel.all
   end
 end
