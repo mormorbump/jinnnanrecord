@@ -11,7 +11,6 @@ ActiveAdmin.register Item do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-  
 	permit_params :artist_id, :item_name, :label, :release_date, :price, :category_id, :image, item_genres_attributes: [:id, :genre_id, :_destroy], stock_attributes: [:quantity, :_destroy], tracks_attributes: [:id, :artist_id, :disc_num, :track_order, :song_title, :song_time, :_destroy]
 
 	menu label: "商品情報", priority: 2
@@ -40,13 +39,12 @@ ActiveAdmin.register Item do
 	form(:html => { :multipart => true }) do |f|
 		f.inputs "アイテム詳細" do
 			f.input :item_name
-			f.attachment_field :image
 			f.input :artist_id, :as => :select, :collection => Artist.all
 			f.input :label
 			f.input :release_date , :as => :date_picker
 			f.input :price
 			f.input :category_id, :as => :select, :collection => Category.all
-			
+
 			f.has_many :item_genres do |ig|
 				ig.input :genre_id, :as => :select, :collection => Genre.all
 				ig.input :_destroy, :as => :boolean, :required => false, :label => 'Remove'
@@ -75,7 +73,6 @@ ActiveAdmin.register Item do
 			row :label
 			row :release_date
 			row :price
-
 			row :category
 			row :image do
 				attachment_image_tag(i, :image, :fill, 300, 300)
@@ -104,4 +101,5 @@ ActiveAdmin.register Item do
 			end
 		end
 	end
+
 end

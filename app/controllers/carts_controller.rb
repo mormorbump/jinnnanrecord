@@ -2,7 +2,9 @@ class CartsController < ApplicationController
   before_action :set_cart_item, only: [:delete_item]
 
   def show
+    # N+1よりアソシエーションの方が二行少なかった
     @cart_items = current_user.cart.cart_items
+    # @cart_items = CartItem.includes(cart: :user).all
     @total_price = 0
 
     @cart_items.each do |cart_item|
@@ -12,17 +14,32 @@ class CartsController < ApplicationController
 
   def add_item
     @cart_item = current_user.cart.cart_items.build(cart_item_params) if @cart_item.nil?
-    # binding pry
-    # paramsメソッドの型は全て文字列なので、integerに変換
-    @cart_item.quantity += params[:quantity].to_i
-    @cart_item.save
+    @item = @cart_item.item
+    stock = @item.stock
+    if stock.presence && (params[:cart_item][:quantity].to_i <= stock.quantity)
+      # paramsメソッドの型は全て文字列なので、integerに変換
+      @cart_item.save
+      # stock.quantity -= params[:cart_item][:quantity].to_i
     redirect_to cart_path(current_user.cart)
+    else
+      flash[:alert] = "在庫がありません"
+      redirect_to item_path(@item)
+    end
   end
 
   def update_item
     @cart_item = current_user.cart.cart_items.find_by(item_id: params[:cart_item][:item_id])
-    @cart_item.update(cart_item_params)
-    redirect_to cart_path(current_user.cart)
+    # @cart_item = CartItem.includes(cart: :user).find_by(item_id: params[:cart_item][:item_id])
+    @item = @cart_item.item
+    stock = @item.stock
+    if stock.presence && (params[:cart_item][:quantity].to_i <= stock.quantity)
+      @cart_item.update(cart_item_params)
+      # stock.quantity -= params[:cart_item][:quantity].to_i
+      redirect_to cart_path(current_user.cart)
+    else
+      flash[:alert] = "在庫がありません"
+      redirect_to cart_path(current_user)
+    end
   end
 
   def delete_item

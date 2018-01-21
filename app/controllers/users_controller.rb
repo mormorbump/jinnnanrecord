@@ -22,17 +22,20 @@ class UsersController < ApplicationController
   end
 
   def orderlists
-    @order_items = []
+    order_items = []
     current_user.orders.each do |order|
       order.order_items.each do |order_item|
-        @order_items << order_item
+        order_items << order_item
       end
     end
 
     @total_price = 0
-    @order_items.each do |order_item|
+    order_items.each do |order_item|
       @total_price += order_item.sub_total_price
     end
+
+    order_items = order_items.reverse
+    @order_items = Kaminari.paginate_array(order_items).page(params[:page]).per(5)
   end
 
   def retire

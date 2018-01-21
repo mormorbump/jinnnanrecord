@@ -13,10 +13,15 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @cart_items = []
     # 二重のハッシュ構造になってるストロングパラメータを繰り返し処理。
+
     cart_items_params.each do |id, cart_item_params|
       cart_item = CartItem.find(id)
-      cart_item.assign_attributes(cart_item_params)
-      @cart_items << cart_item
+      stock = cart_item.item.stock
+      # binding pry
+      if stock.presence && cart_item[:quantity].to_i <= stock.quantity
+        cart_item.assign_attributes(cart_item_params)
+        @cart_items << cart_item
+      end
     end
 
     @total_price = 0
@@ -31,8 +36,16 @@ class OrdersController < ApplicationController
     cart_items = []
     cart_items_params.each do |id, cart_item_params|
       cart_item = CartItem.find(id)
-      cart_item.update(cart_item_params)
-      cart_items << cart_item
+      stock = cart_item.item.stock
+      if stock.presence && cart_item[:quantity].to_i <= stock.quantity
+        cart_item.update(cart_item_params)
+        cart_items << cart_item
+        stock.quantity -= cart_item[:quantity].to_i
+        stock.save
+      else
+        flash[:alert] = "在庫がありません"
+        redirect_to new_order_path
+      end
     end
 
     cart_items.each do |cart_item|
