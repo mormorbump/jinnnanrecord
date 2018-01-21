@@ -14,4 +14,7 @@
 class OrderItem < ApplicationRecord
   belongs_to :item
   belongs_to :order
+
+  validates :quantity, presence: true
+  validates :sub_total_price, presence: true
 end

@@ -39,6 +39,18 @@ class Order < ApplicationRecord
   #     end
   #   end
   # end
+
+  validates :last_name, presence: true
+  validates :first_name, presence: true
+  validates :last_name_kana, presence: true
+  validates :first_name_kana, presence: true
+  validates :postal_code, presence: true
+  validates :address, presence: true
+  validates :tel_num, presence: true
+  validates :total_price, presence: true
+  validates :deliver, presence: true
+  validates :payment, presence: true
+
 end
 
 
