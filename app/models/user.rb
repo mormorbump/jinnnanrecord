@@ -10,9 +10,6 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validates :password, presence: true, length: { maximum: 255 }, allow_nil: true
-
-  
-
   validates :last_name, presence: true
   validates :first_name, presence: true
   validates :last_name_kana, presence: true
