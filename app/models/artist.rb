@@ -12,4 +12,8 @@
 class Artist < ApplicationRecord
 	has_many :items
 	has_many :tracks
+
+	def display_name
+	  self.artist_name
+	end
 end
