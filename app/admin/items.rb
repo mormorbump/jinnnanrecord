@@ -38,29 +38,30 @@ ActiveAdmin.register Item do
 
 	form(:html => { :multipart => true }) do |f|
 		f.inputs "アイテム詳細" do
-			f.input :item_name
-			f.input :artist_id, :as => :select, :collection => Artist.all
-			f.input :label
-			f.input :release_date , :as => :date_picker
-			f.input :price
-			f.input :category_id, :as => :select, :collection => Category.all
+			f.input :item_name, :label => '商品名'
+			f.input :artist_id, :label => 'アーティスト名', :as => :select, :collection => Artist.all.map{|u| ["#{u.artist_name}", u.id]}
+			f.input :label, :label => 'レーベル名'
+			f.input :release_date, :label => 'リリース日', :as => :date_picker
+			f.input :price, :label => '定価'
+			f.input :category_id, :label => 'カテゴリ', :as => :select, :collection => Category.all
+			f.attachment_field :image
 
 			f.has_many :item_genres do |ig|
-				ig.input :genre_id, :as => :select, :collection => Genre.all
-				ig.input :_destroy, :as => :boolean, :required => false, :label => 'Remove'
+				ig.input :genre_id, :label => 'ジャンル', :as => :select, :collection => Genre.all
+				ig.input :_destroy, :as => :boolean, :required => false, :label => '削除する'
 			end
 
 			f.has_many :tracks do |t|
-				t.input :artist_id, :as => :select, :collection => Artist.all
-				t.input :disc_num
-				t.input :track_order
-				t.input :song_title
-				t.input :song_time
-				t.input :_destroy, :as => :boolean, :required => false, :label => 'Remove'
+				t.input :artist_id, :label => 'アーティスト名', :as => :select, :collection => Artist.all.map{|u| ["#{u.artist_name}", u.id]}
+				t.input :disc_num, :label => 'ディスクNo.'
+				t.input :track_order, :label => '曲順'
+				t.input :song_title, :label => '曲名'
+				t.input :song_time, :label => '収録時間'
+				t.input :_destroy, :as => :boolean, :required => false, :label => '削除する'
 			end
 
 			f.inputs "在庫", :for => [:stock, f.object.stock || Stock.new] do |s|
-				s.input :quantity
+				s.input :quantity, :label => '在庫数'
 			end
 			f.actions
 		end

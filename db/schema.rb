@@ -175,7 +175,6 @@ ActiveRecord::Schema.define(version: 20180117110837) do
     t.string "postal_code"
     t.string "address"
     t.string "tel_num"
-    
     t.boolean "blacklist_flag", default: false, null: false
     t.boolean "retire_flag", default: false, null: false
     t.string "retire_reason"
