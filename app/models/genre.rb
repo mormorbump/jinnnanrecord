@@ -14,8 +14,4 @@ class Genre < ApplicationRecord
 
   validates :genre_name, presence: true
 
-
-	def display_name
-		self.genre_name
-	end
 end

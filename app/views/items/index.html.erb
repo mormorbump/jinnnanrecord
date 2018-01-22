@@ -50,14 +50,14 @@
         <div class="search_form">
           <%= form_for ItemSearchForm.new, as: 'search', url: :items, html: {method: :get} do |f| %>
             <p><%= f.label :item_name,"商品名検索" %></p>
-            <p><%= f.text_field :item_name %></p>
+            <p class="form_box"><%= f.text_field :item_name %></p>
             <p><%= f.label :artist_name,"アーティスト名検索" %></p>
-            <p><%= f.text_field :artist_name %></p>
+            <p class="form_box"><%= f.text_field :artist_name %></p>
             <p><%= f.label :song_title,"曲名検索" %></p>
-            <p><%= f.text_field :song_title %></p><p>
+            <p class="form_box"><%= f.text_field :song_title %></p><p>
               <%= f.label :song_title,"カテゴリ検索" %></p>
-            <p><%= f.text_field :category_name %></p>
-            <%= f.submit %>
+            <p class="form_box"><%= f.text_field :category_name %></p>
+            <p><%= f.submit "検索する" %></p> 
           <% end %>
         </div>
         <h2 class="genre-headline">ジャンル</h2>
