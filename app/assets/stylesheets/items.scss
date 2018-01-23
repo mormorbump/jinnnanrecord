@@ -134,9 +134,18 @@ div .ranking-box {
 }
 
 .album_table{
-  margin-top: 0px;
+  width: 90%;
+  margin:0 auto;
 
 }
+
+
+.album_table .song_column{
+
+  line-height: 40px;
+
+}
+
 
 .album_small_info{
   height: 400px;

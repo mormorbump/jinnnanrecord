@@ -24,8 +24,10 @@ class User < ApplicationRecord
                         message: "全角カタカナのみで入力して下さい"
                     }
   validates :postal_code, presence: true
+  validates :postal_code, numericality: {only_integer: true}
   validates :address, presence: true
   validates :tel_num, presence: true
+  validates :tel_num, numericality: {only_integer: true}
 
    def cart_item_exists?(item, cart)
     cart_items = CartItem.where(cart_id: cart.id)
