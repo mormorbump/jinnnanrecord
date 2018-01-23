@@ -28,6 +28,7 @@ class ItemsController < RankingController
     @review = Review.new
     @reviews = @item.reviews.order(id: :desc).page(params[:page]).per(3)
     @stock = @item.stock
+    @song_time_sum = @item.tracks.sum_of_songs
   end
 
   def item_search_form_params

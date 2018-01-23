@@ -16,6 +16,28 @@ ja:
         receiving_at_a_convenience: "コンビニ受取"
         over_the_counter_reveives: "店頭受取"
   activerecord:
+    models:
+      user: ユーザー
+      order: オーダー
+    attributes:
+      user:
+        password: パスワード
+        email: メールアドレス
+        last_name: 苗字
+        first_name: 名前
+        last_name_kana: 苗字フリガナ
+        first_name_kana: 名前フリガナ
+        postal_code: 郵便番号
+        address: 住所
+        tel_num: 電話番号
+      order:
+        last_name: 苗字
+        first_name: 名前
+        last_name_kana: 苗字フリガナ
+        first_name_kana: 名前フリガナ
+        postal_code: 郵便番号
+        address: 住所
+        tel_num: 電話番号
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"

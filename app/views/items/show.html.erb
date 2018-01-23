@@ -69,21 +69,23 @@
 
 
        <div class="col-md-12 album_disc_info">
-         <h3>Disc1</h3>
          <table class="album_table">
           <tr class="album_title">
+           <th>Disc.</th>
            <th>No.</th>
            <th>曲名</th>
            <th>収録時間</th>
          </tr>
-         <%# @item..each do |song| %>
-      <!--        <tr>
-                <td>1</td>
-                <td>女々しくて</td>
-                <td>120:39</td>
-              </tr>  -->
+         <% @item.tracks.each do |song| %>
+             <tr class="song_column">
+                <td><%= song.disc_num %></td>
+                <td><%= song.track_order %></td>
+                <td><%= song.song_title %></td>
+                <td><%= song.song_time %></td>
+              </tr> 
+         <% end %>
             </table>
-            <p>合計時間：999分</p>
+            <p>合計時間：<%= @song_time_sum %> </p>
        </div>
 
 

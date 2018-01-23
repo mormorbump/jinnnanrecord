@@ -24,8 +24,10 @@ class User < ApplicationRecord
                         message: "全角カタカナのみで入力して下さい"
                     }
   validates :postal_code, presence: true
+  validates :postal_code, numericality: {only_integer: true}
   validates :address, presence: true
   validates :tel_num, presence: true
+  validates :tel_num, numericality: {only_integer: true}
 
 
   # enum blacklist_flag: {設定なし:0, ブラックリストユーザ:1}
