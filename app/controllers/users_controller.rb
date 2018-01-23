@@ -1,17 +1,15 @@
 class UsersController < ApplicationController
 	before_action :set_user, only: [:show, :edit, :update,:correct_user, :retire]
-  before_action :authenticate_user!
-  before_action :correct_user,except: [:new,:orderlists]
+  before_action :authenticate_user!, except: :new
+  before_action :correct_user,except: :new
 
   def new
-    cart = current_user.create_cart
-    cart.save
-    redirect_back_or(root_path)
+    cart = current_user.create_cart unless current_user.cart.presence
+    redirect_to controller: 'items', action: 'index'
   end
 
   def show
   end
-
 
   def edit
   end

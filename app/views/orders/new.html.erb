@@ -59,7 +59,7 @@
             <td><%= cart_item.item.item_name %></td>
             <td><%= cart_item.item.artist.artist_name %></td>
             <!-- <td><%#= cart_item.quantity %></td> -->
-            <td><%= c.number_field :quantity,max: cart_item.item.stock.quantity %></td>
+            <td><%= c.number_field :quantity,max: cart_item.item.stock.quantity,min: 1 %></td>
             <td><%= cart_item.item.price %></td>
             <%#= fields_for(:items,cart_item.item) do |i| %>
             <%#= i.hidden_field :id %>

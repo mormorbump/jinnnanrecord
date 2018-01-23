@@ -31,7 +31,7 @@
                    <p>※※在庫がありません※※</p>
                  <% else %>
                     <%= form_for(@cart_item,url: add_item_path) do |f| %>
-                    <li><%= f.number_field :quantity,value: 1,max: @stock.quantity %></li>
+                    <li><%= f.number_field :quantity,value: 1,max: @stock.quantity,min: 1 %></li>
                     <%= f.hidden_field :item_id, value: @item.id %>
                     <li>
                     <%= f.submit "カートに入れる" do %>
