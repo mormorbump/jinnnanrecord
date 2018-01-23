@@ -1,65 +1,84 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_cart?
+
   def new
-    @order = Order.new
-    @cart_items = current_user.cart.cart_items
-    # 合計金額
-    @total_price = 0
-    @cart_items.each do |cart_item|
-      @total_price += cart_item.item.price * cart_item.quantity
+    if user_blacklist?(current_user)
+      redirect_blacklist(current_user)
+    else
+      @order = Order.new
+      @cart_items = current_user.cart.cart_items
+      # 合計金額
+      @total_price = 0
+      @cart_items.each do |cart_item|
+        @total_price += cart_item.item.price * cart_item.quantity
+      end
     end
   end
 
   def confirm
-    @order = Order.new(order_params)
-    @cart_items = []
-    # 二重のハッシュ構造になってるストロングパラメータを繰り返し処理。
+    if user_blacklist?(current_user)
+      redirect_blacklist(current_user)
+    else
+      @order = Order.new(order_params)
+      @cart_items = []
+      # 二重のハッシュ構造になってるストロングパラメータを繰り返し処理。
 
-    cart_items_params.each do |id, cart_item_params|
-      cart_item = CartItem.find(id)
-      stock = cart_item.item.stock
-      # binding pry
-      if stock.presence && cart_item[:quantity].to_i <= stock.quantity
-        cart_item.assign_attributes(cart_item_params)
-        @cart_items << cart_item
+      cart_items_params.each do |id, cart_item_params|
+        cart_item = CartItem.find(id)
+        stock = cart_item.item.stock
+        # binding pry
+        if stock.presence && cart_item[:quantity].to_i <= stock.quantity
+          cart_item.assign_attributes(cart_item_params)
+          @cart_items << cart_item
+        end
       end
-    end
 
-    @total_price = 0
-    @cart_items.each do |cart_item|
-      @total_price += cart_item.item.price * cart_item.quantity
+      @total_price = 0
+      @cart_items.each do |cart_item|
+        @total_price += cart_item.item.price * cart_item.quantity
+      end
     end
   end
 
   def create
-    order = Order.new(order_params)
-
-    cart_items = []
-    cart_items_params.each do |id, cart_item_params|
-      cart_item = CartItem.find(id)
-      stock = cart_item.item.stock
-      if stock.presence && cart_item[:quantity].to_i <= stock.quantity
-        cart_item.update(cart_item_params)
-        cart_items << cart_item
-        stock.quantity -= cart_item[:quantity].to_i
-        stock.save
-      end
-    end
-
-    if order.save
-      cart_items.each do |cart_item|
-        order_item = order.order_items.build
-        order_item.item_id = cart_item.item_id
-        order_item.quantity = cart_item.quantity
-        order_item.sub_total_price = cart_item.item.price * cart_item.quantity
-        cart_item.destroy if order_item.save
-      end
-      redirect_to orderlists_user_path(current_user)
+    if user_blacklist?(current_user)
+      redirect_blacklist(current_user)
     else
-      redirect_to new_order_path
+      order = Order.new(order_params)
+
+      cart_items = []
+      cart_items_params.each do |id, cart_item_params|
+        cart_item = CartItem.find(id)
+        stock = cart_item.item.stock
+        if stock.presence && cart_item[:quantity].to_i <= stock.quantity
+          cart_item.update(cart_item_params)
+          cart_items << cart_item
+          stock.quantity -= cart_item[:quantity].to_i
+          stock.save
+        end
+      end
+
+      if order.save
+        cart_items.each do |cart_item|
+          order_item = order.order_items.build
+          order_item.item_id = cart_item.item_id
+          order_item.quantity = cart_item.quantity
+          order_item.sub_total_price = cart_item.item.price * cart_item.quantity
+          cart_item.destroy if order_item.save
+        end
+        redirect_to orderlists_user_path(current_user)
+      else
+        redirect_to new_order_path
+      end
     end
   end
 
   private
+
+    def authenticate_cart?
+      authenticate_cart(current_user)
+    end
+
     def order_params
       params.permit(
         :last_name,
