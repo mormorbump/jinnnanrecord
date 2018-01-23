@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    order = Order.create(order_params)
+    order = Order.new(order_params)
 
     cart_items = []
     cart_items_params.each do |id, cart_item_params|
@@ -42,20 +42,21 @@ class OrdersController < ApplicationController
         cart_items << cart_item
         stock.quantity -= cart_item[:quantity].to_i
         stock.save
-      else
-        flash[:alert] = "在庫がありません"
-        redirect_to new_order_path
       end
     end
 
-    cart_items.each do |cart_item|
-      order_item = order.order_items.build
-      order_item.item_id = cart_item.item_id
-      order_item.quantity = cart_item.quantity
-      order_item.sub_total_price = cart_item.item.price * cart_item.quantity
-      cart_item.destroy if order_item.save
+    if order.save
+      cart_items.each do |cart_item|
+        order_item = order.order_items.build
+        order_item.item_id = cart_item.item_id
+        order_item.quantity = cart_item.quantity
+        order_item.sub_total_price = cart_item.item.price * cart_item.quantity
+        cart_item.destroy if order_item.save
+      end
+      redirect_to orderlists_user_path(current_user)
+    else
+      redirect_to new_order_path
     end
-    redirect_to orderlists_user_path(current_user)
   end
 
   private
