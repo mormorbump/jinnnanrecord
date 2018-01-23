@@ -29,7 +29,7 @@ class Track < ApplicationRecord
     end
     # 収録曲の合計
     def sum_of_songs
-      song_time = group(:song_time).sum(:song_time)
+      song_time = group(:item_id).sum(:song_time)    
     end
   end
 end

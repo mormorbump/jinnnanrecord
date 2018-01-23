@@ -128,7 +128,6 @@ ActiveRecord::Schema.define(version: 20180117110837) do
 
   create_table "reviews", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "nickname"
     t.integer "item_id", null: false
     t.integer "rate", default: 6, null: false
     t.text "review"
@@ -172,6 +171,7 @@ ActiveRecord::Schema.define(version: 20180117110837) do
     t.string "first_name"
     t.string "last_name_kana"
     t.string "first_name_kana"
+    t.string "nickname"
     t.string "postal_code"
     t.string "address"
     t.string "tel_num"
