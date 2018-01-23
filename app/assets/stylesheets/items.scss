@@ -57,6 +57,7 @@ div .ranking-box {
   border-bottom: 8px solid #f7f7f7;
   text-align: center;
   line-height: 0.6;
+  margin-top: 50px;
 }
 
 .genre-box{
@@ -89,10 +90,15 @@ div .ranking-box {
   border-bottom: 8px solid #f7f7f7;
   text-align: center;
   line-height: 0.6;
+  margin-bottom: 20px;
+}
+
+.categories-headline {
+  margin-top: 50px;
 }
 
 .sidebar-contents {
-  padding: 50px 0;
+  /*padding: 50px 0;*/
 }
 .popular-text, .categories-text {
   padding-bottom: 5px;
@@ -222,6 +228,13 @@ margin:30px 150px 0 0;
   text-align: center;
   width: 200px;
   margin: 0 auto;
+}
+
+.search_form .form_box{
+  height: 40px;
+  margin-bottom: 5px;
+
+  
 }
 
 

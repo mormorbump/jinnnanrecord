@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180117014130) do
+ActiveRecord::Schema.define(version: 20180117110837) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -175,7 +175,7 @@ ActiveRecord::Schema.define(version: 20180117014130) do
     t.string "postal_code"
     t.string "address"
     t.string "tel_num"
-    t.integer "blacklist_flag", default: 0, null: false
+    t.boolean "blacklist_flag", default: false, null: false
     t.boolean "retire_flag", default: false, null: false
     t.string "retire_reason"
     t.index ["email"], name: "index_users_on_email", unique: true
