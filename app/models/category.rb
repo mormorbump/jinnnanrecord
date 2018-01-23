@@ -13,8 +13,5 @@ class Category < ApplicationRecord
   has_one :item
 
   validates :category_name, presence: true
-  
-	def display_name
-	  self.category_name
-	end
+
 end
