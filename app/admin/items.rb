@@ -68,7 +68,7 @@ ActiveAdmin.register Item do
 	end
 
 	show do |i|
-		attributes_table  do
+		attributes_table do
 			row :artist
 			row :item_name
 			row :label

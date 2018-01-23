@@ -16,4 +16,5 @@ class ItemGenre < ApplicationRecord
   validates :item_id,presence: true
   validates :genre_id,presence: true
   validates :item_id,uniqueness: {scope: :genre_id}
+
 end
