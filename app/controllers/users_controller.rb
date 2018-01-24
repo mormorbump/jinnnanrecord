@@ -16,7 +16,11 @@ class UsersController < ApplicationController
 
   def update
     @user.update(user_params)
-    redirect_to user_path(@user)
+    if (user_params[:retire_reason])
+      redirect_to destroy_user_session_path
+    else
+      redirect_to user_path(@user)
+    end
   end
 
   def orderlists

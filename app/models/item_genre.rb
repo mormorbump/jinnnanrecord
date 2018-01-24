@@ -13,8 +13,7 @@ class ItemGenre < ApplicationRecord
 	belongs_to :item
 	belongs_to :genre
 
-  validates :item_id,presence: true
-  validates :genre_id,presence: true
+  # validates :item_id,presence: true
+  # validates :genre_id,presence: true
   validates :item_id,uniqueness: {scope: :genre_id}
-
 end
