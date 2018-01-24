@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   resources :users,only: [:new,:show,:edit,:update]
-  get 'users/:user_id/orderlists' => 'users#orderlists',as: 'orderlists_user'
+  get 'users/:id/orderlists' => 'users#orderlists',as: 'orderlists_user'
   get 'users/:id/retire' => 'users#retire',as: 'retire_answer'
 
   resources :items,only: [:index,:show] do
