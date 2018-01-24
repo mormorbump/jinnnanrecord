@@ -12,7 +12,7 @@ ActiveAdmin.register Artist do
 #   permitted
 # end
 
-	permit_params :artist_name, :aritst_name_kana
+	permit_params :artist_name, :artist_name_kana
 	menu parent: "マスタ設定", label: "アーティスト"
 
 	index do
