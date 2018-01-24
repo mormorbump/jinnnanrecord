@@ -16,6 +16,7 @@
 
 
 .items {
+  min-width: 800px;
   min-height: 200px;
   float: left;
   // margin-right: 30px;
@@ -24,6 +25,9 @@
   border-bottom: 8px solid #f7f7f7;
   text-align: center;
   line-height: 0.6;
+}
+.new_cart_item{
+  text-align: center;
 }
 div .item-box {
   float: left;
@@ -243,7 +247,7 @@ margin:30px 150px 0 0;
   height: 40px;
   margin-bottom: 5px;
 
-  
+
 }
 
 
