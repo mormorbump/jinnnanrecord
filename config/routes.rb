@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :users,only: [:new,:show,:edit,:update]
   get 'users/:id/orderlists' => 'users#orderlists',as: 'orderlists_user'
   get 'users/:id/retire' => 'users#retire',as: 'retire_answer'
+  patch 'users/:id/retire_destroy' => 'users#retire_destroy',as: "retire_destroy_user"
 
   resources :items,only: [:index,:show] do
     resource :reviews,only: [:create,:destroy]

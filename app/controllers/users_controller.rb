@@ -16,11 +16,7 @@ class UsersController < ApplicationController
 
   def update
     @user.update(user_params)
-    if (user_params[:retire_reason])
-      redirect_to destroy_user_session_path
-    else
-      redirect_to user_path(@user)
-    end
+    redirect_to user_path(@user)
   end
 
   def orderlists
@@ -42,6 +38,14 @@ class UsersController < ApplicationController
 
   def retire
   end
+
+  # def retire_destroy
+  #   @user.update(user_params)
+  #   @controller_name = "users/sessions"
+  #   @action_name: "destroy"
+  #   @params: { id: params[:id] }
+  #   render: :retire_destroy
+  # end
 
   private
   def set_user
