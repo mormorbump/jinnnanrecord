@@ -27,7 +27,7 @@
           <%= f.hidden_field :item_id,value: cart_item.item_id %>
         <% end %>
         <td><%= link_to  delete_item_path(cart_item.item),method: :delete do %>
-          <button type="button">削除する</button>
+          <button type="button" class="buttonwhite">削除する</button>
           <% end %></td>
         </tr>
         <% end %>
@@ -37,10 +37,10 @@
       </div>
       <div class="buttonwrap">
         <%= link_to delete_all_path(current_user.cart),method: :delete do %>
-        <button type="button">カートを空にする
+        <button type="button" class="buttonwhite">カートを空にする
         </button><% end %>
 
-        <button type="button" name="aaa" value="aaa">
+        <button type="button" name="aaa" value="aaa" class="buttonwhite">
           <%= link_to "会計する",new_order_path %>
         </button>
       </div>
