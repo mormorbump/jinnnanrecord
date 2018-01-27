@@ -1,4 +1,5 @@
 class ItemsController < RankingController
+  before_action :ranking, only: [:index]
 
   def index
     @items = Item.order(id: :desc).page(params[:page]).per(12)
