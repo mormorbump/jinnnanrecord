@@ -10,5 +10,6 @@
 
 class Cart < ApplicationRecord
   belongs_to :user
+  soft_deletable dependent_associations: [:user]
   has_many :cart_items,dependent: :destroy
 end

@@ -30,9 +30,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
+  def destroy
+    if params[:user][:retire_flag]
+      @user.update(user_params)
+      @user.soft_destroy!
+      Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
+      set_flash_message(:notice, :destroyed)
+      yield resource if block_given?
+      respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
+    else
+      respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
+    end
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
@@ -43,7 +52,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
@@ -54,6 +63,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def configure_account_update_params
   #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
   # end
+  def user_params
+    params.require(:user).permit(:retire_flag)
+  end
 
   def after_sign_up_path_for(resoruce)
       # レシーバーが、引数のモデルに属するインスタンスかどうか判定

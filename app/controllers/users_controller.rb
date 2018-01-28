@@ -15,10 +15,14 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update(user_params)
-    if (user_params[:retire_reason])
-      redirect_to destroy_user_session_path
+    if params[:user][:retire_flag]
+      @user.update(user_params)
+      @user.soft_destroy!
+      Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
+      yield resource if block_given?
+      # respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
     else
+      @user.update(user_params)
       redirect_to user_path(@user)
     end
   end
@@ -43,16 +47,38 @@ class UsersController < ApplicationController
   def retire
   end
 
+  # def retire_destroy
+  #   @user.update(user_params)
+  #   @controller_name = "users/sessions"
+  #   @action_name: "destroy"
+  #   @params: { id: params[:id] }
+  #   render: :retire_destroy
+  # end
+
   private
-  def set_user
-  	@user = User.find(params[:id])
-  end
 
-  def correct_user
-    redirect_to user_path(current_user) unless current_user == @user
-  end
+    def set_user
+    	@user = User.find(params[:id])
+    end
 
-  def user_params
-    params.require(:user).permit(:email,:last_name, :first_name, :last_name_kana, :first_name_kana, :nickname, :postal_code, :address, :tel_num, :retire_flag, :retire_reason,:blacklist_flag)
-  end
+    def correct_user
+      redirect_to user_path(current_user) unless current_user == @user
+    end
+
+    def user_params
+      params.require(:user).permit(
+        :email,
+        :last_name,
+        :first_name,
+        :last_name_kana,
+        :first_name_kana,
+        :nickname,
+        :postal_code,
+        :address,
+        :tel_num,
+        :retire_flag,
+        :retire_reason,
+        :blacklist_flag
+        )
+    end
 end

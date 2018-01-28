@@ -15,6 +15,11 @@ ja:
         mail_delivery: "メール便"
         receiving_at_a_convenience: "コンビニ受取"
         over_the_counter_reveives: "店頭受取"
+    user:
+      retire_reason:
+        bad_item: "魅力的な商品がなかった"
+        high_price: "商品の価格が高い"
+        anuse_ability: "webサイトが使いづらい"
   activerecord:
     models:
       user: ユーザー

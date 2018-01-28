@@ -56,7 +56,9 @@ gem 'annotate'
 gem 'colorize_unpermitted_parameters'
 # ターミナルで許可されてないパラムスを色変えて表示
 gem 'enum_help'
-  # enumをyamlファイルで日本語化
+# enumをyamlファイルで日本語化
+gem 'kakurenbo-puti'
+# 論理削除用gem
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180124063920) do
+ActiveRecord::Schema.define(version: 20180126095328) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -178,9 +178,11 @@ ActiveRecord::Schema.define(version: 20180124063920) do
     t.string "tel_num"
     t.boolean "blacklist_flag", default: false, null: false
     t.boolean "retire_flag", default: false, null: false
-    t.string "retire_reason"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.integer "retire_reason"
+    t.datetime "soft_destroyed_at"
+    t.index ["email", "soft_destroyed_at"], name: "index_users_on_email_and_soft_destroyed_at", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["soft_destroyed_at"], name: "index_users_on_soft_destroyed_at"
   end
 
 end
