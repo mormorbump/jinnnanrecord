@@ -13,7 +13,7 @@ ActiveAdmin.register Order do
 # end
 
 	permit_params :user_id, :last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :tel_num, :total_price, :deliver, :payment, :status
-  menu label: "管理者情報", priority: 7
+  menu label: "注文履歴", priority: 7
 
   index do
     selectable_column
