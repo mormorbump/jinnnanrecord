@@ -1,6 +1,6 @@
 class CreateOrderItems < ActiveRecord::Migration[5.1]
   def change
-    create_table :order_items do |t|
+    create_table :order_items, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC' do |t|
       t.integer :order_id, null: false
       t.integer :item_id, null: false
       t.integer :quantity, null: false, default: 1
