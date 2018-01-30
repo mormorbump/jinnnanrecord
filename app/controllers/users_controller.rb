@@ -15,16 +15,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    if params[:user][:retire_flag]
-      @user.update(user_params)
-      @user.soft_destroy!
-      Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
-      yield resource if block_given?
-      # respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
-    else
-      @user.update(user_params)
-      redirect_to user_path(@user)
-    end
+    @user.update(user_params)
+    redirect_to user_path(@user)
   end
 
   def orderlists
@@ -77,7 +69,6 @@ class UsersController < ApplicationController
         :address,
         :tel_num,
         :retire_flag,
-        :retire_reason,
         :blacklist_flag
         )
     end

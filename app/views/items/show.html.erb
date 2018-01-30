@@ -4,9 +4,9 @@
       <div class="row">
         <div class="col-md-5 album_case">
           <% if @item.image.present? %>
-            <%= attachment_image_tag @item, :image, :fill, 200, 200 %>
+            <%= attachment_image_tag @item, :image, :fill, 376.25, 376.25 %>
           <% else %>
-            <%= image_tag 'no_image.jpg', size: '200x200',alt: "no image" %>
+            <%= image_tag 'no_image.jpg', size: '376.25x376.25',alt: "no image" %>
           <% end %>
         </div>
 
@@ -82,7 +82,7 @@
                 <td><%= song.track_order %></td>
                 <td><%= song.song_title %></td>
                 <td><%= song.song_time %></td>
-              </tr> 
+              </tr>
          <% end %>
             </table>
             <p>合計時間：<%= @song_time_sum %> </p>
