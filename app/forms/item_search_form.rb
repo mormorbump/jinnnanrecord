@@ -20,5 +20,6 @@ class ItemSearchForm
     rel = rel.joins(:tracks).select("items.*, tracks.*").where("tracks.song_title like ?", "%#{song_title}%") if song_title.present?
     rel = rel.joins(:category).select("items.*, categories.*").where("categories.category_name like ?", "%#{category_name}%") if category_name.present?
     rel.all
+    binding.pry
   end
 end
