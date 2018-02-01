@@ -2,21 +2,22 @@ class ItemsController < RankingController
   before_action :ranking, only: [:index]
 
   def index
-    @items = Item.order(id: :desc).page(params[:page]).per(12)
-    @items_count = Item.all.count
     @genres = Genre.all
     # ジャンル絞り
     if params[:genre_id].presence
       genre = Genre.find(params[:genre_id])
       @items = genre.items.order(id: :desc).page(params[:page]).per(12)
       @items_count = genre.items.count
-    end
     # 検索機能
-    if params[:search].presence
+    elsif params[:search].presence
       @search_form = ItemSearchForm.new(item_search_form_params)
-      items = @search_form.search
+      items = @search_form.search.reverse
       @items = Kaminari.paginate_array(items).page(params[:page]).per(12)
       @items_count = items.length
+      # binding.pry
+    else
+      @items = Item.order(id: :desc).page(params[:page]).per(12)
+      @items_count = Item.all.count
     end
 
     @cart = Cart.find_by(user_id: current_user)
