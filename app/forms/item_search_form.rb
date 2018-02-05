@@ -16,7 +16,7 @@ class ItemSearchForm
     # selectにはテーブル名が入る
     # whereにもテーブル名、というかsql文が入る
     rel = rel.joins(:artist).select("items.*, artists.*").where("artists.artist_name like ?", "%#{artist_name}%") if artist_name.present?
-    rel = rel.joins(:tracks).select("items.*, tracks.*").where("tracks.song_title like ?", "%#{song_title}%") if song_title.present?
+    rel = rel.joins(:tracks).select("items.*, tracks.*").where("tracks.song_title like ?", "%#{song_title}%").group(:item_id) if song_title.present?
     rel = rel.joins(:category).select("items.*, categories.*").where("categories.category_name like ?", "%#{category_name}%") if category_name.present?
     rel.all
   end
