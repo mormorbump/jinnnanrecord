@@ -11,7 +11,8 @@ class ItemsController < RankingController
     # 検索機能
     elsif params[:search].presence
       @search_form = ItemSearchForm.new(item_search_form_params)
-      items = @search_form.search.reverse
+      items = @search_form.search
+      items = items.reverse if items.presence
       @items = Kaminari.paginate_array(items).page(params[:page]).per(12)
       @items_count = items.length
       # binding.pry
